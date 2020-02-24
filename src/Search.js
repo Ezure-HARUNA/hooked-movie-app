@@ -12,10 +12,14 @@ import React from "react"
 //➁コンポーネント
 
 const Search =(props) =>{
-
+    //const [ステート名、ステートの再定義関数名]= React.useState(ステートの初期値)
+    const [searchValue, setSearchValue] = useState("");
     //ボタンが押されてsubmitした時に、検索処理を行う
 
+
         //1. ボタンが押されたことを感知する
+        //2. 入力範囲をクリアにする
+        //3. 検索機能を呼び出す
 
     //➂レンダリング
     return (

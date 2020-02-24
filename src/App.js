@@ -15,6 +15,9 @@ import Controll from "./Pagecontroll";
 //➁コンポーネント
 
 const App =() => {
+  //const[state名, stateの再定義関数名] =React.useState(stateの初期値)
+  //データの定義
+  
   return (
     //<Header></Header>
     <Search></Search>
