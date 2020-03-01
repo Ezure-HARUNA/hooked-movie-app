@@ -1,5 +1,6 @@
 //➀インポート
 import React from "react"
+import Test from "./Test"
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -7,8 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 //➁コンポーネント
+
 
 const Header =(props) =>{
     const useStyles = makeStyles(theme => ({
@@ -22,10 +25,8 @@ const Header =(props) =>{
           flexGrow: 1,
         },
       }));
-      export default function ButtonAppBar() {
-        const classes = useStyles();
-      }
-    
+   
+     const classes = useStyles();
       
       
    
@@ -33,19 +34,22 @@ const Header =(props) =>{
     //➂レンダリング
     return (
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" color="primary" >
                 <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
-                    </IconButton>
+                    <Test></Test>
+                    {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> */}
+                        {/* <MenuIcon /> */}
+                    {/* </IconButton> */}
                     <Typography variant="h6" className={classes.title}>
-                        アプリのタイトル
+                        アプリ名
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button color="inherit"><ExitToAppIcon/>ログイン</Button>
                 </Toolbar>
             </AppBar>
+            
         </div>
-
+        
+      
     )
 
 
@@ -53,4 +57,5 @@ const Header =(props) =>{
 
 //➃エクスポート
 export default Header
+
 

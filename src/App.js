@@ -1,9 +1,10 @@
 //➀インポート
 import React from "react"
-//import Header from "./Header";
+import Header from "./Header";
 import Search from "./Search"
-//import List from "./Movie-list";
-import Controll from "./Pagecontroll";
+import List from "./List";
+import Test from "./Test"
+import PageControll from "./PageContoroll";
 
   //styled-componentsをインポート
   //import styled from "styled-components"
@@ -15,12 +16,52 @@ import Controll from "./Pagecontroll";
 //➁コンポーネント
 
 const App =() => {
+
   //const[state名, stateの再定義関数名] =React.useState(stateの初期値)
   //データの定義
   
+  //映画のデータを入れる
+  /*
+  const [movieData, setmovieData] =React.useState(　
+    //setmovieData→取得できたデータを入れる
+      //データを分ける
+      [
+        {
+        title: "apple",
+        img:"",
+        desc:"aa"}
+      ]
+   )
+
+   const Lists = movieData.map((movie, id) =>{ //変更したいデータがmovieData
+      return (                                 //movie(第一引数)要素が入る
+        <li>
+            <img src={movie.img} /> 
+            <h1>{movie.title}</h1>
+            <p>{movie.desc}</p>　　　　　　　　　
+        </li>
+      )
+   })
+  
+
+
+  const movieDataState =() =>{
+
+
+     
+  }
+*/
+
   return (
-    //<Header></Header>
-    <Search></Search>
+    
+    <div>
+      <Header> <Test></Test></Header>
+      <Search></Search>
+      <List><img src="../img/movieImg.jpg" /></List>
+      <PageControll></PageControll>
+      
+    </div>
+    
   )
 }
  
