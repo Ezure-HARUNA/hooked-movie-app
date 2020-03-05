@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import styled from "styled-components"
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -9,7 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-
+import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -18,6 +19,22 @@ const useStyles = makeStyles({
     width: 'auto',
   },
 });
+
+const Div= styled.div`
+height: 60px;
+line-height:60px;`
+
+const StyledButton = styled(Button)`
+background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  height: 48px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+  margin-left:10px;
+  margin-top:-15px;
+`;
 
 
 export default function TemporaryDrawer() {
@@ -89,12 +106,12 @@ export default function TemporaryDrawer() {
   );
 
   return (
-    <div>
-      <Button onClick={toggleDrawer('left', true)}>🍔</Button>
+    <Div>
+      <StyledButton onClick={toggleDrawer('left', true)}><MenuIcon/> </StyledButton>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
       </Drawer>
-    </div>
+    </Div>
   );
 }
 

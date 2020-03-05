@@ -58,7 +58,6 @@ const App =() => {
       <Header> <Test></Test></Header>
       <Search></Search>
       <List><img src="../img/movieImg.jpg" /></List>
-      <PageControll></PageControll>
       
     </div>
     

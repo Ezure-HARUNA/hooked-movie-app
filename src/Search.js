@@ -18,13 +18,32 @@ import React from "react"
 
 const StyledButton = styled(Button)`
     margin-top: 10px!important; 
+    background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  height:40px;
+  padding: 0 30px;
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+  margin-left:10px;
+  margin-top:-15px;
  `
 
-const Search =(props) =>{
+const Search =() =>{
     //const [ステート名、ステートの再定義関数名]= React.useState(ステートの初期値)
-    //const [searchValue, setSearchValue] = React.useState("");
+    const [search, setSearch] = React.useState("");
     //ボタンが押されてsubmitした時に、検索処理を行う
+    const handleSearch =(e) =>{
+        setSearch(e.target.value)
+    }
 
+    const resetSearch =()=>{
+        setSearch("")
+    }
+
+    const clickSearch =(e) => {
+        e.preventdefault()
+    }
 
         //1. ボタンが押されたことを感知する
 
@@ -33,8 +52,7 @@ const Search =(props) =>{
         //3. 検索機能を呼び出す
 
     
-    //➂レンダリング
-    return (
+     return (
         <form align ="center">
             
             {/* <TextareaAutosize aria-label="empty textarea" placeholder="キーワードを入力" /> */}
@@ -42,11 +60,11 @@ const Search =(props) =>{
                {/* 検索 */}
             {/* </Button> */}
             
-
+ 
             <div>
-              <SearchIcon  disabled color="primary"/>
-              <InputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}/>
-              <StyledButton variant="contained" color="primary" type="submit"><SearchIcon style={{ fontSize: 20 }} color="white">add</SearchIcon>検索</StyledButton>
+              <SearchIcon disabled color="secondary"/>
+              <InputBase defaultValue={search} onChange={handleSearch} placeholder="Search…" type="text" inputProps={{ 'aria-label': 'search' }}/>
+              <StyledButton onClick={clickSearch} type="submit" variant="contained" color="primary" type="submit"><SearchIcon style={{ fontSize: 20 }} color="white">add</SearchIcon>検索</StyledButton>
 
             </div>
 
