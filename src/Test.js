@@ -20,9 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Div= styled.div`
-height: 60px;
-line-height:60px;`
+const Div= styled.div``
 
 const StyledButton = styled(Button)`
 background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -77,7 +75,7 @@ export default function TemporaryDrawer() {
       </List>
     </div>
   );
-
+/*
   const fullList = side => (
     <div
       className={classes.fullList}
@@ -104,6 +102,7 @@ export default function TemporaryDrawer() {
       </List>
     </div>
   );
+  */
 
   return (
     <Div>

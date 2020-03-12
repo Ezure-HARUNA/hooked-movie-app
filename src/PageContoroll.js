@@ -1,6 +1,6 @@
 //➀インポート
 import React from "react";
-import styled from "styled-components"
+//import styled from "styled-components"
 
     //マテリアルUIのインポート
 import Pagination from '@material-ui/lab/Pagination'
