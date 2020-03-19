@@ -4,7 +4,7 @@ import React, {useEffect} from "react"
 import Header from "./Header";
 import Search from "./Search"
 import List from "./List";
-import Test from "./Test"
+//import Test from "./Test"
 import PageContoroll from "./PageContoroll";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -22,7 +22,7 @@ min-height:100vh;
 width:100vw;
 background-color: #282A3A;
 z-index: 1!important;
-color:white;
+color:white!important;
 
 .errorMessage {
   margin: 0 auto;
@@ -120,7 +120,7 @@ const App =(props) => {
           // <span>loading...</span>
           <CircularProgress color="secondary" />
         ): errorMessage ? (
-          <div className="errorMessage">{errorMessage}</div>
+          <h3 className="errorMessage">検索結果 なし</h3>
         ): (
           <Ul>
             {moviecards}
