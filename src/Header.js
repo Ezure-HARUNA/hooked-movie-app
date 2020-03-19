@@ -14,7 +14,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 //➁コンポーネント
 
 const StyledAppBar = styled(AppBar)`
-background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+background: linear-gradient(45deg, blue 30%, #00a81c 90%);
   border-radius: 3px;
   border: 0;
   color: white;
@@ -41,8 +41,7 @@ const Header =(props) =>{
       }));
    
      const classes = useStyles();
-      
-      
+
    
 
     //➂レンダリング

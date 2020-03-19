@@ -23,10 +23,10 @@ const useStyles = makeStyles({
 const Div= styled.div``
 
 const StyledButton = styled(Button)`
-background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+background: blue;
   border-radius: 3px;
   border: 0;
-  color: white;
+  color: white!important;
   height: 48px;
   padding: 0 30px;
   box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
@@ -57,6 +57,15 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
+        {['トップ', '近日公開作品', '上映中'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
         {['ブックマーク', 'README', 'ログアウト'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
@@ -64,45 +73,9 @@ export default function TemporaryDrawer() {
           </ListItem>
         ))}
       </List>
-      <Divider />
-      <List>
-        {['アニメ', '洋画', '邦画'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </div>
   );
-/*
-  const fullList = side => (
-    <div
-      className={classes.fullList}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-  */
+
 
   return (
     <Div>
