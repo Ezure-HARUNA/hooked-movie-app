@@ -8,10 +8,11 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import TheatersRoundedIcon from '@material-ui/icons/TheatersRounded';
+import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
+import MeetingRoomRoundedIcon from '@material-ui/icons/MeetingRoomRounded';
 import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles({
@@ -24,6 +25,10 @@ const useStyles = makeStyles({
 });
 
 const Div= styled.div``
+
+const StyledLink=styled(Link)`
+text-decoration:none!important;
+color: gray!important;`
 
 const StyledButton = styled(Button)`
 background: blue;
@@ -38,7 +43,13 @@ background: blue;
 `;
 
 
-export default function TemporaryDrawer() {
+export default function Test(props) {
+
+  const handleId= (e)=>{
+    //e.preventDefault()
+    props.setId(props.id)
+}
+
  
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -60,27 +71,59 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
-        {['トップ', '近日公開作品', '上映中'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+     
+     <List>
+          <StyledLink className="link" onClick={(e)=>{handleId()}} to='/'>
+          <ListItem>
+          <ListItemIcon>< TheatersRoundedIcon /></ListItemIcon>
+          <ListItemText primary="人気映画"/>
           </ListItem>
-        ))}
+          </StyledLink>
+
       </List>
+      <List>
+          <StyledLink className="link" onClick={(e)=>{handleId()}} to='/upcoming'>
+          <ListItem>
+          <ListItemIcon>< TheatersRoundedIcon /></ListItemIcon>
+          <ListItemText primary="UpComing"/>
+          </ListItem>
+          </StyledLink>
+
+      </List>
+      <List>
+          <StyledLink className="link" onClick={(e)=>{handleId()}} to='/favorite'>
+          <ListItem>
+          <ListItemIcon>< FavoriteRoundedIcon /></ListItemIcon>
+          <ListItemText primary="Favorite"/>
+          </ListItem>
+          </StyledLink>
+
+      </List>
+      
       <Divider />
       
+      
       <List>
-        {['ブックマーク', 
-        'README',
-         'ログアウト'
-        ].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+          {/* <Link className="link" onClick={(e)=>{handleId()}} to='/'> */}
+          {/* READMEのリンク */}
+          <ListItem>
+          <ListItemIcon>< MenuBookRoundedIcon /></ListItemIcon>
+          <ListItemText primary="README"/>
           </ListItem>
-        ))}
+          {/* </Link> */}
+
       </List>
+      <List>
+          {/* <Link className="link" onClick={(e)=>{handleId()}} to='/upcoming'> */}
+          {/* ログアウトのリンク */}
+          <ListItem>
+          <ListItemIcon>< MeetingRoomRoundedIcon /></ListItemIcon>
+          <ListItemText primary="ログアウト"/>
+          </ListItem>
+          {/* </Link> */}
+
+      </List>
+      
     </div>
   );
 
@@ -94,4 +137,3 @@ export default function TemporaryDrawer() {
     </Div>
   );
 }
-

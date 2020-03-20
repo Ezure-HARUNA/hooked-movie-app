@@ -67,50 +67,50 @@ const DEFAULT_IMG ="https://image.tmdb.org/t/p/w185//o9qfaNwjnqNBJ1uOLeC53r5eTzB
 const List =(props) => {
     //img→検索結果を表示
     const poster =
-     props.movies[props.id].poster_path === "N/A" ? DEFAULT_IMG : imgUrl+props.movies[props.id].poster_path
+    props.movies[props.index].poster_path === "N/A" ? DEFAULT_IMG : imgUrl+props.movies[props.id].poster_path
+    //  props.movies[props.id].poster_path === "N/A" ? DEFAULT_IMG : imgUrl+props.movies[props.id].poster_path
 
-     const rating = () => {
-        if (props.movies[props.id].vote_average !== 0) {
-          return (
-            <StyledRating>
-              <StyledStarRoundedIcon />
-              {props.movies[props.id].vote_average}
-            </StyledRating>
-          );
-        }
-      };
-      const title =() =>{
-          if (props.movies[props.id].title != null) {
-              return (
-                <StyledTitle>{props.movies[props.id].title}</StyledTitle> 
-              )
-          }
-      }
+    //  const rating = () => {
+    //     if (props.movies[props.id].vote_average !== 0) {
+    //       return (
+    //         <StyledRating>
+    //           <StyledStarRoundedIcon />
+    //           {props.movies[props.id].vote_average}
+    //         </StyledRating>
+    //       );
+    //     }
+    //   };
+    //   const title =() =>{
+    //       if (props.movies[props.id].title != null) {
+    //           return (
+    //             <StyledTitle>{props.movies[props.id].title}</StyledTitle> 
+    //           )
+    //       }
+    //   }
+
+    
 
       const handleId= (e)=>{
           //e.preventDefault()
           props.setId(props.id)
       }
-      /*
-      const handleListSubmit=() =>{
-          this.props.history.push('/detail')
-      }
-     */
+    
   
     return (
        //中央ぞろえ
        <Div style={{margin:'auto'}} className="movie"> 
            {/* <Grid container spacing={0}> */}
-            {rating()}
+             {/* <h2>{genresArray().join(" , ")}</h2>  */}
+            {/* {rating()} */}
             <Link onClick={(e)=>{handleId()}} to='/detail'>
             <Img 
                 //  onClick={handleListSubmit}
                  src={poster}
               //Detailsにリンク飛ぶように
               />
-              </Link>
+            </Link>
               {/* <PageContoroll></PageContoroll> */}
-            {title()}
+            {/* {title()} */}
             {/* <p>{props.movies[props.id].title}</p>  */}
             {/* <p>{props.movies[props.id].release_date}</p>  */}
             {/* <p>{props.movies[props.id].overview}</p>  */}

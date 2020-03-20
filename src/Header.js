@@ -76,20 +76,10 @@ const Header =(props) =>{
         <div className={classes.root}>
             <StyledAppBar position="static" color="primary" >
                 <Toolbar>
-                    <Test ></Test>
+                    <Test id={props.id} setId={props.setId}></Test>
                     <Typography variant="h6" className={classes.title}>
                         アプリ名
                     </Typography>
-                  <Link onClick={(e)=>{handleId()}} to='/app'>
-                    <Typography variant="h6" className={classes.title}>
-                        Popular
-                    </Typography>
-                  </Link>
-                  <Link to="/upcoming">
-                    <Typography variant="h6" className={classes.title}>
-                        Now Loading
-                    </Typography>
-                  </Link>
                     <Button color="inherit"><ExitToAppIcon/>ログイン</Button>
                 </Toolbar>
             </StyledAppBar>

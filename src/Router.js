@@ -6,6 +6,7 @@ import Test from "./Test"
 import Detail from "./Detail"
 import List from "./List"
 import UpComing from "./UpComing"
+import Favorite from "./Favorite"
 
 import styled from "styled-components"
 
@@ -23,8 +24,9 @@ const Router =() =>{
           <Header id={id} setId={setId}></Header>
           <Route exact path='/' render={() => <App movies={movies} setMovies={setMovies} setId={setId}></App>}></Route>
           <Route path='/detail' render={(props) => <Detail movies={movies} id={id} setId={setId}></Detail>}></Route>
-          <Route path='list' render={(props) => <List movies={movies} id={id} setid={setId}></List>}></Route>
-          <Route path='upcoming' render={() => <UpComing movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
+          <Route path='/list' render={(props) => <List movies={movies} id={id} setid={setId}></List>}></Route>
+          <Route path='/upcoming' render={() => <UpComing movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
+          <Route path='/favorite' render={()=> <Favorite></Favorite>}></Route>
        </BrowserRouter>
     </Div>
     )

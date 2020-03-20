@@ -1,9 +1,7 @@
 //➀インポート
 import React, {useEffect} from "react"
-//import React from "react"
 import Search from "./Search"
 import List from "./List";
-//import Test from "./Test"
 import PageContoroll from "./PageContoroll";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -22,6 +20,7 @@ width:100vw;
 background-color: #282A3A;
 z-index: 1!important;
 color:white!important;
+
 .errorMessage {
   margin: 0 auto;
   font-weight:bold;
@@ -46,13 +45,14 @@ const App =(props) => {
     const [loading, setLoading] = React.useState(true)
     //const [movies, setMovies] = React.useState([])
     const [errorMessage, setErrorMessage] = React.useState(null)
+    //const [details, setDetails] =React.useState([])
 
     
     useEffect(() => {
       fetch(MOVIE_POPULAR_URL)
           .then(res => res.json())
           .then(res => { //responseでも可能(任意) json→連想配列
-              setMovies(res.results) //moviesに入ったよ
+              setMovies(res)
               setLoading(false)
             
           });
@@ -70,14 +70,14 @@ const App =(props) => {
       setLoading(true)
       setErrorMessage(null)
 
-      fetch(`https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
+      fetch( `https://api.themoviedb.org/3/movie/${movies[props.index].id}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
 
           
         .then(res => res.json())
         .then(res => { //検索成功
-            if (res.results != null) {
+            if (res != null) {
               setLoading(false)
-              setMovies(res.results)
+              setMovies(res)
             } else { //検索失敗
               setErrorMessage(true)
               setLoading(false)
@@ -90,12 +90,13 @@ const App =(props) => {
           //map関数の引数をreturnしてあげる必要がある
               //配列  　　　//配列 //配列(movies)に用意されたメソッド(あらかじめ用意された関数)　//movie=連想配列(要素)
               //メソッドは作ることもできる
-          const moviecards=movies.map((movie, id) =>{
+          const moviecards=movies.map((movie, index) =>{
             //??????
             return (
-            <List setId={props.setId} id={id} movie={movie} movies={movies}/>
+            <List setId={props.setId} index={index} movie={movie} movies={movies}/>
             )
             })
+
           /*
           const moviecards= [<List key={`${id}-{res.results[0].title}`} movie={movie} />
                              , <List key={`${id}-{res.results[1].title}`} movie={movie} />
