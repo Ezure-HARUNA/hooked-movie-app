@@ -1,5 +1,4 @@
 import React, {Component} from "react"
-//import Detail from "./Detail"
 import {Link} from 'react-router-dom'
 import styled from "styled-components"
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
@@ -24,7 +23,6 @@ const Div=styled.div`
         transform: scale(1.1);
    }
    
-
   @media screen and (max-width: 1500px) {
     width: 200px!important;
   }
@@ -38,9 +36,6 @@ const Div=styled.div`
     justify-content:space-between!important;
     width:40%!important;
   }
-
-
-
 `
 
 const StyledRating = styled.div`
@@ -97,7 +92,6 @@ const List =(props) => {
           props.setId(props.id)
       }
       /*
-
       const handleListSubmit=() =>{
           this.props.history.push('/detail')
       }

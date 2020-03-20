@@ -11,6 +11,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
+
+import {Link} from 'react-router-dom'
+
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -36,6 +39,7 @@ background: blue;
 
 
 export default function TemporaryDrawer() {
+ 
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -65,8 +69,12 @@ export default function TemporaryDrawer() {
         ))}
       </List>
       <Divider />
+      
       <List>
-        {['ブックマーク', 'README', 'ログアウト'].map((text, index) => (
+        {['ブックマーク', 
+        'README',
+         'ログアウト'
+        ].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />

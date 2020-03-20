@@ -25,7 +25,6 @@ const Form =styled.form`
 input[type="text"] [
     background-color: white;
 ]
-
 `
 const StyledInputBase =styled(InputBase)`
 color: white!important;
@@ -70,13 +69,11 @@ const Search =(props) =>{
         setSearchValue(e.target.value)
     }
         /*
-
         fetch(`https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=ja-JP&query=${searchValue}&page=1&include_adult=false`)
             .catch(err=>{
                 if (err) console.error(err)
             })
             .then(res=>res.json())
-
             .then(res=> {
                 // setTitle(res.results[0].title)
                 // setImg(res.results[0].poster_path)

@@ -4,6 +4,8 @@ import App from "./App"
 import Header from "./Header"
 import Test from "./Test"
 import Detail from "./Detail"
+import List from "./List"
+import UpComing from "./UpComing"
 
 import styled from "styled-components"
 
@@ -18,9 +20,11 @@ const Router =() =>{
     return (
     <Div>
        <BrowserRouter>
-          <Header><Test></Test></Header>
+          <Header id={id} setId={setId}></Header>
           <Route exact path='/' render={() => <App movies={movies} setMovies={setMovies} setId={setId}></App>}></Route>
-          <Route path='/detail' render={(props) => <Detail movies={movies} id={id}></Detail>}></Route>
+          <Route path='/detail' render={(props) => <Detail movies={movies} id={id} setId={setId}></Detail>}></Route>
+          <Route path='list' render={(props) => <List movies={movies} id={id} setid={setId}></List>}></Route>
+          <Route path='upcoming' render={() => <UpComing movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
        </BrowserRouter>
     </Div>
     )

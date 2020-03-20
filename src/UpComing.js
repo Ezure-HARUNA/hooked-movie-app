@@ -11,7 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
   import styled from "styled-components"
 
 　//APIの導入
-　const MOVIE_POPULAR_URL = "https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=1";
+　const MOVIE_UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=1";
   //const MOVIE_UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=1";
   
 //➁コンポーネント
@@ -39,7 +39,7 @@ flex-wrap: wrap;
 `
 
 
-const App =(props) => {
+const UpComing =(props) => {
      //
      const movies =props.movies
      const setMovies=props.setMovies
@@ -49,7 +49,7 @@ const App =(props) => {
 
     
     useEffect(() => {
-      fetch(MOVIE_POPULAR_URL)
+      fetch(MOVIE_UPCOMING_URL)
           .then(res => res.json())
           .then(res => { //responseでも可能(任意) json→連想配列
               setMovies(res.results) //moviesに入ったよ
@@ -135,5 +135,5 @@ const App =(props) => {
 
 
 //➃エクスポート
-export default App
+export default UpComing
 //export default process.env.NODE_ENV === "development" ? hot(App) : App;

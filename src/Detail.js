@@ -1,11 +1,12 @@
 import React from "react"
-//import Detail from "./Detail"
-//import { withRouter } from 'react-router';
+import {Link} from 'react-router-dom'
 import styled from "styled-components"
 
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import Button from '@material-ui/core/Button';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
+import BackspaceRoundedIcon from '@material-ui/icons/BackspaceRounded';
+
 
 
 const imgUrl = "https://image.tmdb.org/t/p/w1280/";
@@ -32,16 +33,31 @@ color: yellow;`
 
 
 const StyledButton = styled(Button)`
-    background: linear-gradient(45deg, blue 30%, #00a81c 90%);
+    background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
     border-radius: 20px!important;
     border: 0;
     color: white;
     height:40px;
     padding: 0 30px;
     box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
-    margin-top:-15px;
+    margin: 10px 5px!important;
     cursor: pointer;
+
  `
+
+ 
+const StyledButton2 = styled(Button)`
+background: linear-gradient(45deg, blue 30%, #00a81c 90%);
+border-radius: 20px!important;
+border: 0;
+color: white;
+height:40px;
+padding: 0 30px;
+box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
+margin: 10px 5px!important;
+cursor: pointer;
+
+`
 
 
 
@@ -63,9 +79,13 @@ const Detail =(props) => {
         }
       }
 
+    const handleId= (e)=>{
+        //e.preventDefault()
+        props.setId(props.id)
+    }
+
     /*
       const[isFavorite, setIsFavorite]=React.useState(false)
-
       const handleFavorite =() =>{
         if (isFavorite) {
             setIsFavorite(false)
@@ -95,7 +115,6 @@ const Detail =(props) => {
       
      
       
-
       const handleListSubmit=() =>{
           this.props.history.push('/detail')
       }
@@ -108,17 +127,21 @@ const Detail =(props) => {
                 //  onClick={handleListSubmit}
                  src={imgUrl+props.movies[props.id].backdrop_path}
 
-              //Detailsにリンク飛ぶように
               />
               {rating()}
 
             <h1>{props.movies[props.id].title}</h1> 
             <h2>Overview</h2>
             <p>{props.movies[props.id].overview}</p>
-         
-            <StyledButton  variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
+           
+            <StyledButton variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
                 Add Favorite
             </StyledButton>
+            <Link onClick={(e)=>{handleId()}} to='/'>
+                <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
+                    Back To Sarch Screen
+                </StyledButton2>
+            </Link>
             
             {/* onClick={handleFavorite} */}
             {/* {isFavoriteState()} */}
