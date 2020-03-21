@@ -1,6 +1,8 @@
 import React, {Component} from "react"
 import {Link} from 'react-router-dom'
+import NO_IMG from "./img/noImage.png"
 import styled from "styled-components"
+import RemoveFavorite from "./RemoveFavorite"
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
 const imgUrl = "https://image.tmdb.org/t/p/w154/";
@@ -61,32 +63,30 @@ const StyledTitle=styled.p`
 `
 
 
-const DEFAULT_IMG ="https://image.tmdb.org/t/p/w185//o9qfaNwjnqNBJ1uOLeC53r5eTzB.jpg"
-//No Image用の画像
 
 const List =(props) => {
     //img→検索結果を表示
     const poster =
-    props.movies[props.index].poster_path === "N/A" ? DEFAULT_IMG : imgUrl+props.movies[props.id].poster_path
-    //  props.movies[props.id].poster_path === "N/A" ? DEFAULT_IMG : imgUrl+props.movies[props.id].poster_path
+    props.movies[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].poster_path
+    //  props.movies[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].poster_path
 
-    //  const rating = () => {
-    //     if (props.movies[props.id].vote_average !== 0) {
-    //       return (
-    //         <StyledRating>
-    //           <StyledStarRoundedIcon />
-    //           {props.movies[props.id].vote_average}
-    //         </StyledRating>
-    //       );
-    //     }
-    //   };
-    //   const title =() =>{
-    //       if (props.movies[props.id].title != null) {
-    //           return (
-    //             <StyledTitle>{props.movies[props.id].title}</StyledTitle> 
-    //           )
-    //       }
-    //   }
+     const rating = () => {
+        if (props.movies[props.id].vote_average !== 0) {
+          return (
+            <StyledRating>
+              <StyledStarRoundedIcon />
+              {props.movies[props.id].vote_average}
+            </StyledRating>
+          );
+        }
+      };
+      const title =() =>{
+          if (props.movies[props.id].title != null) {
+              return (
+                <StyledTitle>{props.movies[props.id].title}</StyledTitle> 
+              )
+          }
+      }
 
     
 
@@ -101,7 +101,7 @@ const List =(props) => {
        <Div style={{margin:'auto'}} className="movie"> 
            {/* <Grid container spacing={0}> */}
              {/* <h2>{genresArray().join(" , ")}</h2>  */}
-            {/* {rating()} */}
+            {rating()}
             <Link onClick={(e)=>{handleId()}} to='/detail'>
             <Img 
                 //  onClick={handleListSubmit}
@@ -110,7 +110,9 @@ const List =(props) => {
               />
             </Link>
               {/* <PageContoroll></PageContoroll> */}
-            {/* {title()} */}
+            {title()}
+            {props.removeMode && <RemoveFavorite favorites={props.favorites} setFavorites={props.setFavorites} movie={props.movie} />}
+            {/* <RemoveFavorite favorites={props.favorites} setFavorites={props.setFavorites} movie={props.movie}/> */}
             {/* <p>{props.movies[props.id].title}</p>  */}
             {/* <p>{props.movies[props.id].release_date}</p>  */}
             {/* <p>{props.movies[props.id].overview}</p>  */}

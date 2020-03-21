@@ -86,13 +86,12 @@ const Detail =(props) => {
 
     /*
       const[isFavorite, setIsFavorite]=React.useState(false)
-      const handleFavorite =() =>{
+      const handleAddFavorite =() =>{
         if (isFavorite) {
             setIsFavorite(false)
         } else {
             setIsFavorite(true)
         }
-   
         const isFavoriteState =() =>{
             if (isFavorite) {
                 return (
@@ -105,20 +104,32 @@ const Detail =(props) => {
                     <Button onClick={handleFavorite} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
                     　　追加
                  　　</Button>     
-                )
-            }
-      
-        }
-        
-       
-      }
-      
-     
-      
-      const handleListSubmit=() =>{
-          this.props.history.push('/detail')
-      }
+                )}}}
      */
+
+     const favorites=props.favorites
+     const setFavorites=props.setFavorites
+
+     const handleAddFavorite = (e) => {
+        
+        e.preventDefault()
+        const item =e.target.value
+
+          // If no favorites exist, clone the movie and copy into newFavorites.
+          let newFavorites = favorites.slice();
+          
+          //取り出した値の追加
+          //let deepClone = JSON.parse(JSON.stringify(props.movies));
+          newFavorites.push(props.movies)
+
+          //favoritesの再定義
+          setFavorites(newFavorites)
+         
+    
+      }
+
+
+    
   
     return (
        //中央ぞろえ
@@ -134,7 +145,7 @@ const Detail =(props) => {
             <h2>Overview</h2>
             <p>{props.movies[props.id].overview}</p>
            
-            <StyledButton variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
+            <StyledButton onClick={(e) =>{handleAddFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
                 Add Favorite
             </StyledButton>
             <Link onClick={(e)=>{handleId()}} to='/'>

@@ -1,7 +1,7 @@
 import React, {useEffect} from "react"
+import List from "./List"
 import Search from "./Search"
 import PageContoroll from "./PageContoroll";
-import FavoriteList from "./FavoriteList"
 import AddFavorite from "./AddFavorite"
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
@@ -21,16 +21,10 @@ width:100vw;
 background-color: #282A3A;
 z-index: 1!important;
 color:white!important;
-.errorMessage {
-  margin: 0 auto;
-  font-weight:bold;
-  color: red;
-}
-.moviesList {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-}
+
 `
 const RemoveModeButton =styled(Button)`
 background: linear-gradient(45deg, blue 30%, #00a81c 90%);
@@ -44,28 +38,32 @@ background: linear-gradient(45deg, blue 30%, #00a81c 90%);
     cursor: pointer;`
 
 
-const Favorite = () => {
-    const [toggleRemove, setToggleRemove] = React.useState(false)
-    const [favorites, setFavorites] = React.useState([])
+const Favorite = (props) => {
+    // const [toggleRemove, setToggleRemove] = React.useState(false)
+    const favorites=props.favorites
+    //avorites={favorites} setFavorites={setFavorites}
+    // import { CTX } from "../components/Store/Store";
   
     return (
-      <>
+      <Div>
         
-        {favorites.length > 0 ? (
+        {favorites != null ? (
           <>
             <text>お気に入りだよ</text>
-              <RemoveModeButton variant="contained" onClick={() => setToggleRemove(!toggleRemove)}>
-                {toggleRemove ? "Disable Remove Mode" : "Enable Remove Mode"}
+              <RemoveModeButton variant="contained" onClick={() => props.setToggleRemove(!props.toggleRemove)}>
+                {props.toggleRemove ? "Disable Remove Mode" : "Enable Remove Mode"}
               </RemoveModeButton>
     
   
             <div className="favoritesList">
-              {favorites.map((movie,id) => (
-                <FavoriteList
-                  id={id}
-                  movie={movie}
-                  removeMode={toggleRemove}
-                />
+              {favorites.map(movie => (
+                    <List
+                      key={movie.id}
+                      movie={movie}
+                      removeMode={props.toggleRemove}
+                    />
+                  ))}
+               
               ))}
             </div>
           </>
@@ -76,7 +74,7 @@ const Favorite = () => {
         )}
         　　<AddFavorite></AddFavorite>
            <PageContoroll></PageContoroll>
-      </>
+      </Div>
     );
   };
 

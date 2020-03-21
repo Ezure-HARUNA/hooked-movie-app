@@ -52,13 +52,31 @@ const App =(props) => {
       fetch(MOVIE_POPULAR_URL)
           .then(res => res.json())
           .then(res => { //responseでも可能(任意) json→連想配列
-              setMovies(res)
+              setMovies(res.results)
               setLoading(false)
             
           });
          
   }, []);
   
+
+  
+          //map関数の引数をreturnしてあげる必要がある
+              //配列  　　　//配列 //配列(movies)に用意されたメソッド(あらかじめ用意された関数)　//movie=連想配列(要素)
+              //メソッドは作ることもできる
+              // const moviecards=movies.map((movie, id) =>{
+              //   //??????
+              //   return (
+              //   <List setId={props.setId} id={id} movie={movie} movies={movies}/>
+              //   )
+              //   })
+    
+              /*
+              const moviecards= [<List key={`${id}-{res.results[0].title}`} movie={movie} />
+                                 , <List key={`${id}-{res.results[1].title}`} movie={movie} />
+                                 ,<List key={`${id}-{res.results[2].title}`} movie={movie} />
+                                ・・・・・・]
+                */
 
     //配列・連想配列・変数・関数→別々の呼び出し方
   
@@ -70,14 +88,15 @@ const App =(props) => {
       setLoading(true)
       setErrorMessage(null)
 
-      fetch( `https://api.themoviedb.org/3/movie/${movies[props.index].id}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
+     fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
+    //  ( `https://api.themoviedb.org/3/movie/movie_id?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
 
           
         .then(res => res.json())
         .then(res => { //検索成功
             if (res != null) {
               setLoading(false)
-              setMovies(res)
+              setMovies(res.results)
             } else { //検索失敗
               setErrorMessage(true)
               setLoading(false)
@@ -87,22 +106,6 @@ const App =(props) => {
     
 
      
-          //map関数の引数をreturnしてあげる必要がある
-              //配列  　　　//配列 //配列(movies)に用意されたメソッド(あらかじめ用意された関数)　//movie=連想配列(要素)
-              //メソッドは作ることもできる
-          const moviecards=movies.map((movie, index) =>{
-            //??????
-            return (
-            <List setId={props.setId} index={index} movie={movie} movies={movies}/>
-            )
-            })
-
-          /*
-          const moviecards= [<List key={`${id}-{res.results[0].title}`} movie={movie} />
-                             , <List key={`${id}-{res.results[1].title}`} movie={movie} />
-                             ,<List key={`${id}-{res.results[2].title}`} movie={movie} />
-                            ・・・・・・]
-            */
         
 
   return (
@@ -122,7 +125,7 @@ const App =(props) => {
           <h3 className="errorMessage">検索結果 なし</h3>
         ): (
           <Ul>
-            {moviecards}
+            {props.moviecards}
           </Ul>
         )} 
       </div>
