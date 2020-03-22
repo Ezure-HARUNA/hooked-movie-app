@@ -52,7 +52,7 @@ const App =(props) => {
       fetch(MOVIE_POPULAR_URL)
           .then(res => res.json())
           .then(res => { //responseでも可能(任意) json→連想配列
-              setMovies(res)
+              setMovies(res.results)
               setLoading(false)
             
           });
@@ -97,7 +97,7 @@ const App =(props) => {
         .then(res => { //検索成功
             if (res != null) {
               setLoading(false)
-              setMovies(res)
+              setMovies(res.results)
             } else { //検索失敗
               setErrorMessage(true)
               setLoading(false)

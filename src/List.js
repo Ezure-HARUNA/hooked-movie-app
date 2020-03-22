@@ -67,23 +67,25 @@ const StyledTitle=styled.p`
 const List =(props) => {
     //img→検索結果を表示
     const poster =
-    props.movies[props.id].results.poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].results.poster_path
+    props.movies[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].poster_path
     //  props.movies[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].poster_path
 
+    let genresArray = props.movies[props.id].genres.map(item => item.name);
+
      const rating = () => {
-        if (props.movies[props.id].results.vote_average != 0) {
+        if (props.movies[props.id].vote_average != 0) {
           return (
             <StyledRating>
               <StyledStarRoundedIcon />
-              {props.movies[props.id].results.vote_average}
+              {props.movies[props.id].vote_average}
             </StyledRating>
           );
         }
       };
       const title =() =>{
-          if (props.movies[props.id].results.title != null) {
+          if (props.movies[props.id].title != null) {
               return (
-                <StyledTitle>{props.movies[props.id].results.title}</StyledTitle> 
+                <StyledTitle>{props.movies[props.id].title}</StyledTitle> 
               )
           }
       }
@@ -100,7 +102,7 @@ const List =(props) => {
        //中央ぞろえ
        <Div style={{margin:'auto'}} className="movie"> 
            {/* <Grid container spacing={0}> */}
-             {/* <h2>{genresArray().join(" , ")}</h2>  */}
+             <h2>{genresArray().join(" , ")}</h2> 
             {rating()}
             <Link onClick={(e)=>{handleId()}} to='/detail'>
             <Img 

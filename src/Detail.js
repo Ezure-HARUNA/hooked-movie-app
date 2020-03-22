@@ -69,11 +69,11 @@ const Detail =(props) => {
     //const poster =
      //props.img === "N/A" ? DEFAULT_IMG : props.img;
      const rating = () => {
-        if (props.movies[0].results.vote_average !== 0) {
+        if (props.movies[0].vote_average !== 0) {
           return (
             <div>
               <StyledStarRoundedIcon />
-              {props.movies[0].results.vote_average}
+              {props.movies[0].vote_average}
             </div>
           )
         }
@@ -136,17 +136,17 @@ const Detail =(props) => {
        <Div style={{margin:'auto'}} className="movie"> 
             <Img 
                 //  onClick={handleListSubmit}
-                 src={imgUrl+props.movies[props.id].results.backdrop_path}
+                 src={imgUrl+props.movies[props.id].backdrop_path}
 
               />
               {rating()}
 
-            <h1>{props.movies[props.id].results.title}</h1> 
+            <h1>{props.movies[props.id].title}</h1> 
             <h2>Overview</h2>
             <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3>
-            <p>{props.movies[props.id].results.overview}</p>
+            <p>{props.movies[props.id].overview}</p>
             <h3>Release Date</h3>
-            <p>{props.movies[props.id].results.release_date}</p>
+            <p>{props.movies[props.id].release_date}</p>
             <h3>上映時間</h3>
             <p>{props.movies[props.id].runtime}</p>
            
