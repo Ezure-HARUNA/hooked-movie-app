@@ -109,14 +109,14 @@ const Detail =(props) => {
         } else {
             setIsAdd(true)
         //➁追加の処理
-        props.favorites=e.target.value
+        const movies=e.target.props.movies.value
                  
         // If no favorites exist, clone the movie and copy into newFavorites.
         let newFavorites = favorites.slice();
 
         //取り出した値の追加
         //let deepClone = JSON.parse(JSON.stringify(props.movies));
-        newFavorites.push(props.movies)
+        newFavorites.push(movies)
 
         //favoritesの再定義
         setFavorites(newFavorites)
