@@ -40,12 +40,13 @@ flex-wrap: wrap;
 
 const App =(props) => {
      //
-     const movies =props.movies
      const setMovies=props.setMovies
+     const setDetails=props.setDetails
     const [loading, setLoading] = React.useState(true)
     //const [movies, setMovies] = React.useState([])
     const [errorMessage, setErrorMessage] = React.useState(null)
     //const [details, setDetails] =React.useState([])
+    
 
     
     useEffect(() => {
@@ -53,8 +54,9 @@ const App =(props) => {
           .then(res => res.json())
           .then(res => { //responseでも可能(任意) json→連想配列
               setMovies(res.results)
+              setDetails(res)
               setLoading(false)
-            
+
           });
          
   }, []);
@@ -98,14 +100,13 @@ const App =(props) => {
             if (res != null) {
               setLoading(false)
               setMovies(res.results)
+              setDetails(res)
             } else { //検索失敗
               setErrorMessage(true)
               setLoading(false)
             }
         })
     }
-    
-
      
         
 

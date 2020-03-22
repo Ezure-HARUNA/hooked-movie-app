@@ -17,14 +17,14 @@ background-color: #282A3A;
 
 const Router =() =>{
     const [movies, setMovies] = React.useState([])
+    const [details, setDetails] =React.useState([])
     const [favorites, setFavorites] =React.useState([]);
-    const [toggleRemove, setToggleRemove] = React.useState(false)
     const [id, setId] =React.useState("")
     let newFavorites ;
 
     const moviecards=movies.map((movie, id) =>{
       return (
-      <List setId={setId} id={id} movie={movie} movies={movies}/>
+   <List setId={setId} id={id} movie={movie} movies={movies}/>
       )
       })
 
@@ -32,7 +32,7 @@ const Router =() =>{
     <Div>
        <BrowserRouter>
           <Header id={id} setId={setId}></Header>
-          <Route exact path='/' render={() => <App moviecards={moviecards} movies={movies} setMovies={setMovies} setId={setId}></App>}></Route>
+          <Route exact path='/' render={() => <App moviecards={moviecards} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}></Route>
           <Route path='/detail' render={(props) => <Detail newFavorites={newFavorites} movies={movies} id={id} setId={setId} favorites={favorites} setFavorites={setFavorites}></Detail>}></Route>
           <Route path='/list' render={(props) => <List favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} setid={setId}></List>}></Route>
           <Route path='/upcoming' render={() => <UpComing movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>

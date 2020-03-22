@@ -73,7 +73,7 @@ const FavoriteList =(props) => {
     // let genresArray = props.movies[props.id].genres.map(item => item.name);
 
      const rating = () => {
-        if (props.favorites[props.id].vote_average != 0) {
+        if (props.favorites[props.id].vote_average !== 0) {
           return (
             <StyledRating>
               <StyledStarRoundedIcon />

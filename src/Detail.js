@@ -1,12 +1,12 @@
 import React from "react"
 import {Link} from 'react-router-dom'
 import styled from "styled-components"
-import MediaQuery from "react-responsive";
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import Button from '@material-ui/core/Button';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import BackspaceRoundedIcon from '@material-ui/icons/BackspaceRounded';
-import { useMediaQuery } from "@material-ui/core";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 
 
 
@@ -31,6 +31,7 @@ const DivPc=styled.div`
 display: flex!important;
 flex-wrap: wrap;
 overflow: hidden!important;
+color: white;
 `
 
 const StyledStarRoundedIcon=styled(StarRoundedIcon)`
@@ -93,7 +94,7 @@ const Detail =(props) => {
     const favorites=props.favorites
     const setFavorites=props.setFavorites
 
-    
+
     const[isAdd, setIsAdd]=React.useState(false)
     const handleIsFavorite =(e)=>{
         e.preventDefault()
@@ -138,77 +139,75 @@ const Detail =(props) => {
      
     }
 
-    const isPC=useMediaQuery({
-        query: "(min-width: 1025px)"
-    })
+    const theme = useTheme();
+    const isSP=useMediaQuery(theme.breakpoints.up('sm'));
+
+    // const isTAB=useMediaQuery({
+    //     query: "(max-width: 1024px)"
+    // })
     return (
-        <>
-        {isPC && (
-　　　　<DivPc>
+    <>
+        {isSP ? (
+        <Div style={{margin:'auto'}} className="movie"> 
             <Img 
                 src={imgUrl+props.movies[props.id].backdrop_path}
             />
-            <div className="childContainer">
-                {rating()}
-                <h1>{props.movies[props.id].title}</h1> 
-                <h2>Overview</h2>
-                {/* <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3> */}
-                <p>{props.movies[props.id].overview}</p>
-                <h3>Release Date</h3>
-                <p>{props.movies[props.id].release_date}</p>
-                <h3>上映時間</h3>
-                <p>{props.movies[props.id].runtime}</p>
+            {rating()}
 
-                <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+            <h1>{props.movies[props.id].title}</h1> 
+            <h2>Overview</h2>
+            <h3>{props.details.genres.name.join(" , ")}</h3>
+            <p>{props.movies[props.id].overview}</p>
+            <h3>Release Date</h3>
+            <p>{props.movies[props.id].release_date}</p>
+            <h3>上映時間</h3>
+            <p>{props.details.runtime}</p>
 
+            <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
                 {isAddState}
-                </StyledButton> 
-                <Link onClick={(e)=>{handleId()}} to='/'>
-                <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
-                    Back To Sarch Screen
-                </StyledButton2>
-                </Link>
-
-            </div>
-
-        </DivPc>
+            </StyledButton> 
+            <Link onClick={(e)=>{handleId()}} to='/'>
+            <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
+                Back To Sarch Screen
+            </StyledButton2>
+            </Link>
+        </Div>       
+　　　　
            
         ) : ( //タブレット・スマホ版
-            <Div style={{margin:'auto'}} className="movie"> 
+            <DivPc>
                 <Img 
-                    //  onClick={handleListSubmit}
                     src={imgUrl+props.movies[props.id].backdrop_path}
-
                 />
-                {rating()}
+                <div className="childContainer">
+                    {rating()}
+                    <h1>{props.movies[props.id].title}</h1> 
+                    <h2>Overview</h2>
+                    {/* <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3> */}
+                    <p>{props.movies[props.id].overview}</p>
+                    <h3>Release Date</h3>
+                    <p>{props.movies[props.id].release_date}</p>
+                    <h3>上映時間</h3>
+                    <p>{props.movies[props.id].runtime}</p>
 
-                <h1>{props.movies[props.id].title}</h1> 
-                <h2>Overview</h2>
-                {/* <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3> */}
-                <p>{props.movies[props.id].overview}</p>
-                <h3>Release Date</h3>
-                <p>{props.movies[props.id].release_date}</p>
-                <h3>上映時間</h3>
-                <p>{props.movies[props.id].runtime}</p>
-           
-                <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
-            
-                {isAddState}
-                </StyledButton> 
-                <Link onClick={(e)=>{handleId()}} to='/'>
+                    <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+                        {isAddState}
+                    </StyledButton> 
+                    <Link onClick={(e)=>{handleId()}} to='/'>
                     <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
-                    Back To Sarch Screen
+                        Back To Sarch Screen
                     </StyledButton2>
-                </Link>
-
-        </Div>
+                    </Link>
+                </div>
+            </DivPc>
 
         )}
-
-        </>
-       
+    </>
     )
+
 }
+
+
 
 export default Detail
 //export default withRouter(connect(mapStateToProps, map)(List))
