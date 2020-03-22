@@ -68,16 +68,16 @@ const Detail =(props) => {
     //img→検索結果を表示
     //const poster =
      //props.img === "N/A" ? DEFAULT_IMG : props.img;
-     const rating = () => {
-        if (props.movies[0].vote_average !== 0) {
-          return (
-            <div>
-              <StyledStarRoundedIcon />
-              {props.movies[0].vote_average}
-            </div>
-          )
+    const rating = () => {
+        if (props.movies[props.id].vote_average !== 0) {
+            return (
+                <div>
+                    <StyledStarRoundedIcon />
+                    {props.movies[props.id].vote_average}
+                </div>
+            )
         }
-      }
+    }
 
     const handleId= (e)=>{
         //e.preventDefault()
@@ -85,51 +85,71 @@ const Detail =(props) => {
     }
 
 
-     const favorites=props.favorites
-     const setFavorites=props.setFavorites
+    // const favorites=props.favorites
+    // const setFavorites=props.setFavorites
 
-     const handleAddFavorite = (e) => {
+    // const displayAddFavorite = (e) => {
+    
+    // const[isAdd, setIsAdd]=React.useState(false)
+    // if (isAdd) {
+    //     setIsAdd(false)
+    // } else {
+    //     setIsAdd(true)
+    // }
+    
+    // const isAddState =() =>{
+    //     if (isAdd) {
+    //         return (
+    //             <Button onClick={(e)=>{handleFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
+    //                削除
+    //             </Button>       
+    //         )
+    //     } else {
+    //         return (
+    //             <Button onClick={(e)=>{handleFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
+    //             　　追加
+    //          　　</Button>     
+    //     )}}
+    // }
 
-        //➀追加の処理
-        e.preventDefault()
-        const item =e.target.value
-
-          // If no favorites exist, clone the movie and copy into newFavorites.
-          let newFavorites = favorites.slice();
+    // const handleFavorite =(e)=>{
+    //     e.preventDefault()
+    //     const[isAdd, setIsAdd]=React.useState(false)
+    //     if (isAdd) {
+    //         //➁削除の処理
+           
+    //         props.favorites(e.target.value)
+    //           // If no favorites exist, clone the movie and copy into newFavorites.
+    //         const removeFavorites = props.favorites.slice();
+              
+    //           //取り出した値の追加
+    //           //let deepClone = JSON.parse(JSON.stringify(props.movies));
+    //           removeFavorites.splice(props.id, 1)
+    
+    //           //favoritesの再定義
+    //           props.setFavorites(removeFavorites)
+    
+    //         //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
+           
+    //     } else {
+    //         //➁追加の処理
+    //         props.favorites(e.target.value)
+             
+    //          // If no favorites exist, clone the movie and copy into newFavorites.
+    //          let newFavorites = favorites.slice();
           
-          //取り出した値の追加
-          //let deepClone = JSON.parse(JSON.stringify(props.movies));
-          newFavorites.push(props.movies)
+    //          //取り出した値の追加
+    //           //let deepClone = JSON.parse(JSON.stringify(props.movies));
+    //           newFavorites.push(props.movies)
 
-          //favoritesの再定義
-          setFavorites(newFavorites)
-        
-        //➁削除の処理
-
-        //➂ボタン表示の処理
-
+    //           //favoritesの再定義
+    //          setFavorites(newFavorites)
+    
+    //     }
+    // }
        
-      const[isAdd, setIsAdd]=React.useState(false)
-        if (isAdd) {
-            setIsAdd(false)
-        } else {
-            setIsAdd(true)
-        }
-        const isAddState =() =>{
-            if (isAdd) {
-                return (
-                    <Button onClick={handleFavorite} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
-                       削除
-                    </Button>       
-                )
-            } else {
-                return (
-                    <Button onClick={handleFavorite} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
-                    　　追加
-                 　　</Button>     
-                )}}
-     
-                }
+        
+                
 
     
   
@@ -138,24 +158,24 @@ const Detail =(props) => {
        <Div style={{margin:'auto'}} className="movie"> 
             <Img 
                 //  onClick={handleListSubmit}
-                 src={imgUrl+props.movies[props.id].backdrop_path}
+                 src={imgUrl+props.movies[props.id].results.backdrop_path}
 
               />
               {rating()}
 
-            <h1>{props.movies[props.id].title}</h1> 
+            <h1>{props.movies[props.id].results.title}</h1> 
             <h2>Overview</h2>
-            <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3>
-            <p>{props.movies[props.id].overview}</p>
+            {/* <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3> */}
+            <p>{props.movies[props.id].results.overview}</p>
             <h3>Release Date</h3>
             <p>{props.movies[props.id].release_date}</p>
             <h3>上映時間</h3>
             <p>{props.movies[props.id].runtime}</p>
            
-            <StyledButton  variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+            {/* <StyledButton  onClick={(e)=>{displayAddFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
             
-                Add Favorite
-            </StyledButton>
+                {isAddState()}
+            </StyledButton> */}
             <Link onClick={(e)=>{handleId()}} to='/'>
                 <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
                     Back To Sarch Screen

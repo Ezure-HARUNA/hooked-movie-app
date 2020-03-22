@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React from "react"
 import {Link} from 'react-router-dom'
 import NO_IMG from "./img/noImage.png"
 import styled from "styled-components"
@@ -64,28 +64,28 @@ const StyledTitle=styled.p`
 
 
 
-const List =(props) => {
+const FavoriteList =(props) => {
     //img→検索結果を表示
     const poster =
-    props.movies[props.id].results.poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].results.poster_path
+    props.favorites[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.favorites[props.id].poster_path
     //  props.movies[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].poster_path
 
     // let genresArray = props.movies[props.id].genres.map(item => item.name);
 
      const rating = () => {
-        if (props.movies[props.id].results.vote_average != 0) {
+        if (props.favorites[props.id].vote_average != 0) {
           return (
             <StyledRating>
               <StyledStarRoundedIcon />
-              {props.movies[props.id].results.vote_average}
+              {props.favorites[props.id].vote_average}
             </StyledRating>
           );
         }
       };
       const title =() =>{
-          if (props.movies[props.id].results.title != null) {
+          if (props.favorites[props.id].title != null) {
               return (
-                <StyledTitle>{props.movies[props.id].results.title}</StyledTitle> 
+                <StyledTitle>{props.favoritess[props.id].title}</StyledTitle> 
               )
           }
       }
@@ -128,5 +128,5 @@ const List =(props) => {
     )
 }
 
-export default List
+export default FavoriteList
 //export default withRouter(connect(mapStateToProps, map)(List))

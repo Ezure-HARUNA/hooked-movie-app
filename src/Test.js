@@ -91,7 +91,7 @@ export default function Test(props) {
 
       </List>
       <List>
-          <StyledLink className="link" onClick={(e)=>{handleId()}} to='/favorite'>
+          <StyledLink className="link" onClick={(e)=>{handleId()}} to='/favoritelist'>
           <ListItem>
           <ListItemIcon>< FavoriteRoundedIcon /></ListItemIcon>
           <ListItemText primary="Favorite"/>
