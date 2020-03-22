@@ -1,7 +1,7 @@
 import React from "react"
 import {Link} from 'react-router-dom'
 import styled from "styled-components"
-import Responsive, {useMediaQuery} from "react-responsive-window";
+import MediaQuery from "react-responsive";
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import Button from '@material-ui/core/Button';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
