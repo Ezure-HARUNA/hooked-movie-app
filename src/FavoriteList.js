@@ -130,3 +130,41 @@ const FavoriteList =(props) => {
 
 export default FavoriteList
 //export default withRouter(connect(mapStateToProps, map)(List))
+
+// return (
+//     <Div>
+      
+//       {favorites != null ? (
+//         <>
+//           <text>お気に入りだよ</text>
+//             <RemoveModeButton variant="contained" onClick={() => props.setToggleRemove(!props.toggleRemove)}>
+//               {props.toggleRemove ? "Disable Remove Mode" : "Enable Remove Mode"}
+//             </RemoveModeButton>
+  
+
+//           <div className="favoritesList">
+//             {favorites.map((favorite,id) => {
+
+//            return (
+//               <List
+//               key={props.movie.id}
+//               favorite={favorite}
+//               removeMode={props.toggleRemove}
+//               id={props.id}
+//             />
+//            )
+                
+//               } )}
+             
+//             ))}
+//           </div>
+//         </>
+//       ) : (
+//         <text>
+//           お気に入りを追加してね
+//         </text>
+//       )}
+//       　　<AddFavorite></AddFavorite>
+//          <PageContoroll></PageContoroll>
+//     </Div>
+//   );

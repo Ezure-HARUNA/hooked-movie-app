@@ -40,8 +40,8 @@ flex-wrap: wrap;
 
 const Favorite =(props) => {
      //
-     const movies =props.movies
-     const setMovies=props.setMovies
+    const movies =props.movies
+    const setMovies=props.setMovies
     const [loading, setLoading] = React.useState(true)
     //const [movies, setMovies] = React.useState([])
     const [errorMessage, setErrorMessage] = React.useState(null)
@@ -52,7 +52,7 @@ const Favorite =(props) => {
 //       fetch(MOVIE_POPULAR_URL)
 //           .then(res => res.json())
 //           .then(res => { //responseでも可能(任意) json→連想配列
-//               setMovies(res.results)
+//               setMovies(res)
 //               setLoading(false)
             
 //           });
@@ -71,9 +71,9 @@ const Favorite =(props) => {
                 })
     
               /*
-              const moviecards= [<List key={`${id}-{res.results[0].title}`} movie={movie} />
-                                 , <List key={`${id}-{res.results[1].title}`} movie={movie} />
-                                 ,<List key={`${id}-{res.results[2].title}`} movie={movie} />
+              const moviecards= [<List key={`${id}-{res[0].title}`} movie={movie} />
+                                 , <List key={`${id}-{res[1].title}`} movie={movie} />
+                                 ,<List key={`${id}-{res[2].title}`} movie={movie} />
                                 ・・・・・・]
                 */
 
@@ -96,7 +96,7 @@ const Favorite =(props) => {
         .then(res => { //検索成功
             if (res != null) {
               setLoading(false)
-              setMovies(res.results)
+              setMovies(res)
             } else { //検索失敗
               setErrorMessage(true)
               setLoading(false)
@@ -145,40 +145,3 @@ export default Favorite
 
 
 
-// return (
-//     <Div>
-      
-//       {favorites != null ? (
-//         <>
-//           <text>お気に入りだよ</text>
-//             <RemoveModeButton variant="contained" onClick={() => props.setToggleRemove(!props.toggleRemove)}>
-//               {props.toggleRemove ? "Disable Remove Mode" : "Enable Remove Mode"}
-//             </RemoveModeButton>
-  
-
-//           <div className="favoritesList">
-//             {favorites.map((favorite,id) => {
-
-//            return (
-//               <List
-//               key={props.movie.id}
-//               favorite={favorite}
-//               removeMode={props.toggleRemove}
-//               id={props.id}
-//             />
-//            )
-                
-//               } )}
-             
-//             ))}
-//           </div>
-//         </>
-//       ) : (
-//         <text>
-//           お気に入りを追加してね
-//         </text>
-//       )}
-//       　　<AddFavorite></AddFavorite>
-//          <PageContoroll></PageContoroll>
-//     </Div>
-//   );
