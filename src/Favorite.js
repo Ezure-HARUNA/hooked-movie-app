@@ -56,13 +56,18 @@ const Favorite = (props) => {
     
   
             <div className="favoritesList">
-              {favorites.map(movie => (
-                    <List
-                      key={movie.id}
-                      movie={movie}
-                      removeMode={props.toggleRemove}
-                    />
-                  ))}
+              {favorites.map((favorite,id) => {
+
+             return (
+                <List
+                // key={props.movie.id}
+                favorite={favorite}
+                removeMode={props.toggleRemove}
+                id={props.id}
+              />
+             )
+                  
+                } )}
                
               ))}
             </div>

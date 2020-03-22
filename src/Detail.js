@@ -69,11 +69,11 @@ const Detail =(props) => {
     //const poster =
      //props.img === "N/A" ? DEFAULT_IMG : props.img;
      const rating = () => {
-        if (props.movies[0].vote_average !== 0) {
+        if (props.movies[0].results.vote_average !== 0) {
           return (
             <div>
               <StyledStarRoundedIcon />
-              {props.movies[0].vote_average}
+              {props.movies[0].results.vote_average}
             </div>
           )
         }
@@ -107,26 +107,26 @@ const Detail =(props) => {
                 )}}}
      */
 
-     const favorites=props.favorites
-     const setFavorites=props.setFavorites
+    //  const favorites=props.favorites
+    //  const setFavorites=props.setFavorites
 
-     const handleAddFavorite = (e) => {
+    //  const handleAddFavorite = (e) => {
         
-        e.preventDefault()
-        const item =e.target.value
+    //     e.preventDefault()
+    //     const item =e.target.value
 
-          // If no favorites exist, clone the movie and copy into newFavorites.
-          let newFavorites = favorites.slice();
+    //       // If no favorites exist, clone the movie and copy into newFavorites.
+    //       let newFavorites = favorites.slice();
           
-          //取り出した値の追加
-          //let deepClone = JSON.parse(JSON.stringify(props.movies));
-          newFavorites.push(props.movies)
+    //       //取り出した値の追加
+    //       //let deepClone = JSON.parse(JSON.stringify(props.movies));
+    //       newFavorites.push(props.movies)
 
-          //favoritesの再定義
-          setFavorites(newFavorites)
+    //       //favoritesの再定義
+    //       setFavorites(newFavorites)
          
     
-      }
+    //   }
 
 
     
@@ -136,16 +136,22 @@ const Detail =(props) => {
        <Div style={{margin:'auto'}} className="movie"> 
             <Img 
                 //  onClick={handleListSubmit}
-                 src={imgUrl+props.movies[props.id].backdrop_path}
+                 src={imgUrl+props.movies[props.id].results.backdrop_path}
 
               />
               {rating()}
 
-            <h1>{props.movies[props.id].title}</h1> 
+            <h1>{props.movies[props.id].results.title}</h1> 
             <h2>Overview</h2>
-            <p>{props.movies[props.id].overview}</p>
+            <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3>
+            <p>{props.movies[props.id].results.overview}</p>
+            <h3>Release Date</h3>
+            <p>{props.movies[props.id].results.release_date}</p>
+            <h3>上映時間</h3>
+            <p>{props.movies[props.id].runtime}</p>
            
-            <StyledButton onClick={(e) =>{handleAddFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
+            <StyledButton  variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+            {/* onClick={(e) =>{handleAddFavorite(e)}} */}
                 Add Favorite
             </StyledButton>
             <Link onClick={(e)=>{handleId()}} to='/'>

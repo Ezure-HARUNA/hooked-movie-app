@@ -26,7 +26,7 @@ const RemoveFavorite = (props) =>{
           
           //取り出した値の追加
           //let deepClone = JSON.parse(JSON.stringify(props.movies));
-          removeFavorites.splice()
+          removeFavorites.splice(props.id, 1)
 
           //favoritesの再定義
           props.setFavorites(removeFavorites)

@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import {Link} from 'react-router-dom'
 import NO_IMG from "./img/noImage.png"
 import styled from "styled-components"
-import RemoveFavorite from "./RemoveFavorite"
+//import RemoveFavorite from "./RemoveFavorite"
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
 const imgUrl = "https://image.tmdb.org/t/p/w154/";
@@ -67,23 +67,23 @@ const StyledTitle=styled.p`
 const List =(props) => {
     //img→検索結果を表示
     const poster =
-    props.movies[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].poster_path
+    props.movies[props.id].results.poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].results.poster_path
     //  props.movies[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].poster_path
 
      const rating = () => {
-        if (props.movies[props.id].vote_average !== 0) {
+        if (props.movies[props.id].results.vote_average != 0) {
           return (
             <StyledRating>
               <StyledStarRoundedIcon />
-              {props.movies[props.id].vote_average}
+              {props.movies[props.id].results.vote_average}
             </StyledRating>
           );
         }
       };
       const title =() =>{
-          if (props.movies[props.id].title != null) {
+          if (props.movies[props.id].results.title != null) {
               return (
-                <StyledTitle>{props.movies[props.id].title}</StyledTitle> 
+                <StyledTitle>{props.movies[props.id].results.title}</StyledTitle> 
               )
           }
       }
@@ -111,7 +111,10 @@ const List =(props) => {
             </Link>
               {/* <PageContoroll></PageContoroll> */}
             {title()}
-            {props.removeMode && <RemoveFavorite favorites={props.favorites} setFavorites={props.setFavorites} movie={props.movie} />}
+
+
+            {/* {props.removeMode && <RemoveFavorite favorites={props.favorites} setFavorites={props.setFavorites} movie={props.movie} id={props.id}/>} */}
+            
             {/* <RemoveFavorite favorites={props.favorites} setFavorites={props.setFavorites} movie={props.movie}/> */}
             {/* <p>{props.movies[props.id].title}</p>  */}
             {/* <p>{props.movies[props.id].release_date}</p>  */}
