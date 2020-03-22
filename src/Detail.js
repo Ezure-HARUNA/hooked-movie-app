@@ -84,16 +84,39 @@ const Detail =(props) => {
         props.setId(props.id)
     }
 
-    /*
-      const[isFavorite, setIsFavorite]=React.useState(false)
-      const handleAddFavorite =() =>{
-        if (isFavorite) {
-            setIsFavorite(false)
+
+     const favorites=props.favorites
+     const setFavorites=props.setFavorites
+
+     const handleAddFavorite = (e) => {
+
+        //➀追加の処理
+        e.preventDefault()
+        const item =e.target.value
+
+          // If no favorites exist, clone the movie and copy into newFavorites.
+          let newFavorites = favorites.slice();
+          
+          //取り出した値の追加
+          //let deepClone = JSON.parse(JSON.stringify(props.movies));
+          newFavorites.push(props.movies)
+
+          //favoritesの再定義
+          setFavorites(newFavorites)
+        
+        //➁削除の処理
+
+        //➂ボタン表示の処理
+
+       
+      const[isAdd, setIsAdd]=React.useState(false)
+        if (isAdd) {
+            setIsAdd(false)
         } else {
-            setIsFavorite(true)
+            setIsAdd(true)
         }
-        const isFavoriteState =() =>{
-            if (isFavorite) {
+        const isAddState =() =>{
+            if (isAdd) {
                 return (
                     <Button onClick={handleFavorite} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
                        削除
@@ -104,30 +127,9 @@ const Detail =(props) => {
                     <Button onClick={handleFavorite} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
                     　　追加
                  　　</Button>     
-                )}}}
-     */
-
-    //  const favorites=props.favorites
-    //  const setFavorites=props.setFavorites
-
-    //  const handleAddFavorite = (e) => {
-        
-    //     e.preventDefault()
-    //     const item =e.target.value
-
-    //       // If no favorites exist, clone the movie and copy into newFavorites.
-    //       let newFavorites = favorites.slice();
-          
-    //       //取り出した値の追加
-    //       //let deepClone = JSON.parse(JSON.stringify(props.movies));
-    //       newFavorites.push(props.movies)
-
-    //       //favoritesの再定義
-    //       setFavorites(newFavorites)
-         
-    
-    //   }
-
+                )}}
+     
+                }
 
     
   
@@ -151,7 +153,7 @@ const Detail =(props) => {
             <p>{props.movies[props.id].runtime}</p>
            
             <StyledButton  variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
-            {/* onClick={(e) =>{handleAddFavorite(e)}} */}
+            
                 Add Favorite
             </StyledButton>
             <Link onClick={(e)=>{handleId()}} to='/'>
