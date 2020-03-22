@@ -90,14 +90,14 @@ const App =(props) => {
 
       // fetch(`https://api.themoviedb.org/3/search/person?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
      //fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
-     fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id].id}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
+     fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id].i}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
 
           
         .then(res => res.json())
         .then(res => { //検索成功
             if (res != null) {
               setLoading(false)
-              setMovies(res)
+              setMovies(res.results)
             } else { //検索失敗
               setErrorMessage(true)
               setLoading(false)

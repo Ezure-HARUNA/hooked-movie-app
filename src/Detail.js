@@ -1,11 +1,12 @@
 import React from "react"
 import {Link} from 'react-router-dom'
 import styled from "styled-components"
-
+import Responsive, {useMediaQuery} from "react-responsive-window";
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import Button from '@material-ui/core/Button';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import BackspaceRoundedIcon from '@material-ui/icons/BackspaceRounded';
+import { useMediaQuery } from "@material-ui/core";
 
 
 
@@ -23,10 +24,14 @@ const Div=styled.div`
    background-color: #282A3A;
    margin-top: 10px!important;
    color: white;
+   overflow: hidden!important;
 `
 
-
-
+const DivPc=styled.div`
+display: flex!important;
+flex-wrap: wrap;
+overflow: hidden!important;
+`
 
 const StyledStarRoundedIcon=styled(StarRoundedIcon)`
 color: yellow;`
@@ -94,7 +99,7 @@ const Detail =(props) => {
         e.preventDefault()
         if (isAdd) {
             setIsAdd(false)
-            props.favorites(e.target.value)
+            props.movies(e.target.props.movies.value)
             // If no favorites exist, clone the movie and copy into newFavorites.
             const removeFavorites = props.favorites.slice();
             
@@ -108,19 +113,19 @@ const Detail =(props) => {
           //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
         } else {
             setIsAdd(true)
-        //➁追加の処理
-        const movies=e.target.props.movies.value
+            //➁追加の処理
+            props.movies=e.target.props.movies.value
                  
-        // If no favorites exist, clone the movie and copy into newFavorites.
-        let newFavorites = favorites.slice();
+            // If no favorites exist, clone the movie and copy into newFavorites.
+            let newFavorites = favorites.slice();
 
-        //取り出した値の追加
-        //let deepClone = JSON.parse(JSON.stringify(props.movies));
-        newFavorites.push(movies)
+            //取り出した値の追加
+            //let deepClone = JSON.parse(JSON.stringify(props.movies));
+            newFavorites.push(props.movies)
 
-        //favoritesの再定義
-        setFavorites(newFavorites)
-        }
+            //favoritesの再定義
+            setFavorites(newFavorites)
+            }
 
     } 
     
@@ -132,39 +137,76 @@ const Detail =(props) => {
         　 isAddState="追加"
      
     }
+
+    const isPC=useMediaQuery({
+        query: "(min-width: 1025px)"
+    })
     return (
-       //中央ぞろえ
-       <Div style={{margin:'auto'}} className="movie"> 
+        <>
+        {isPC && (
+　　　　<DivPc>
             <Img 
-                //  onClick={handleListSubmit}
-                 src={imgUrl+props.movies[props.id].backdrop_path}
+                src={imgUrl+props.movies[props.id].backdrop_path}
+            />
+            <div className="childContainer">
+                {rating()}
+                <h1>{props.movies[props.id].title}</h1> 
+                <h2>Overview</h2>
+                {/* <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3> */}
+                <p>{props.movies[props.id].overview}</p>
+                <h3>Release Date</h3>
+                <p>{props.movies[props.id].release_date}</p>
+                <h3>上映時間</h3>
+                <p>{props.movies[props.id].runtime}</p>
 
-              />
-              {rating()}
+                <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
 
-            <h1>{props.movies[props.id].title}</h1> 
-            <h2>Overview</h2>
-            {/* <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3> */}
-            <p>{props.movies[props.id].overview}</p>
-            <h3>Release Date</h3>
-            <p>{props.movies[props.id].release_date}</p>
-            <h3>上映時間</h3>
-            {/* <p>{props.movies[props.id].runtime}</p> */}
-           
-            <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
-            
                 {isAddState}
-            </StyledButton> 
-            <Link onClick={(e)=>{handleId()}} to='/'>
+                </StyledButton> 
+                <Link onClick={(e)=>{handleId()}} to='/'>
                 <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
                     Back To Sarch Screen
                 </StyledButton2>
-            </Link>
+                </Link>
+
+            </div>
+
+        </DivPc>
+           
+        ) : ( //タブレット・スマホ版
+            <Div style={{margin:'auto'}} className="movie"> 
+                <Img 
+                    //  onClick={handleListSubmit}
+                    src={imgUrl+props.movies[props.id].backdrop_path}
+
+                />
+                {rating()}
+
+                <h1>{props.movies[props.id].title}</h1> 
+                <h2>Overview</h2>
+                {/* <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3> */}
+                <p>{props.movies[props.id].overview}</p>
+                <h3>Release Date</h3>
+                <p>{props.movies[props.id].release_date}</p>
+                <h3>上映時間</h3>
+                <p>{props.movies[props.id].runtime}</p>
+           
+                <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
             
-            {/* onClick={handleFavorite} */}
-            {/* {isFavoriteState()} */}
+                {isAddState}
+                </StyledButton> 
+                <Link onClick={(e)=>{handleId()}} to='/'>
+                    <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
+                    Back To Sarch Screen
+                    </StyledButton2>
+                </Link>
 
         </Div>
+
+        )}
+
+        </>
+       
     )
 }
 
