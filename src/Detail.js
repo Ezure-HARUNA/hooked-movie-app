@@ -85,74 +85,53 @@ const Detail =(props) => {
     }
 
 
-    // const favorites=props.favorites
-    // const setFavorites=props.setFavorites
-
-    // const displayAddFavorite = (e) => {
-    
-    // const[isAdd, setIsAdd]=React.useState(false)
-    // if (isAdd) {
-    //     setIsAdd(false)
-    // } else {
-    //     setIsAdd(true)
-    // }
-    
-    // const isAddState =() =>{
-    //     if (isAdd) {
-    //         return (
-    //             <Button onClick={(e)=>{handleFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
-    //                削除
-    //             </Button>       
-    //         )
-    //     } else {
-    //         return (
-    //             <Button onClick={(e)=>{handleFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}>
-    //             　　追加
-    //          　　</Button>     
-    //     )}}
-    // }
-
-    // const handleFavorite =(e)=>{
-    //     e.preventDefault()
-    //     const[isAdd, setIsAdd]=React.useState(false)
-    //     if (isAdd) {
-    //         //➁削除の処理
-           
-    //         props.favorites(e.target.value)
-    //           // If no favorites exist, clone the movie and copy into newFavorites.
-    //         const removeFavorites = props.favorites.slice();
-              
-    //           //取り出した値の追加
-    //           //let deepClone = JSON.parse(JSON.stringify(props.movies));
-    //           removeFavorites.splice(props.id, 1)
-    
-    //           //favoritesの再定義
-    //           props.setFavorites(removeFavorites)
-    
-    //         //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
-           
-    //     } else {
-    //         //➁追加の処理
-    //         props.favorites(e.target.value)
-             
-    //          // If no favorites exist, clone the movie and copy into newFavorites.
-    //          let newFavorites = favorites.slice();
-          
-    //          //取り出した値の追加
-    //           //let deepClone = JSON.parse(JSON.stringify(props.movies));
-    //           newFavorites.push(props.movies)
-
-    //           //favoritesの再定義
-    //          setFavorites(newFavorites)
-    
-    //     }
-    // }
-       
-        
-                
+    const favorites=props.favorites
+    const setFavorites=props.setFavorites
 
     
+    const[isAdd, setIsAdd]=React.useState(false)
+    const handleIsFavorite =(e)=>{
+        e.preventDefault()
+        if (isAdd) {
+            setIsAdd(false)
+            props.favorites(e.target.value)
+            // If no favorites exist, clone the movie and copy into newFavorites.
+            const removeFavorites = props.favorites.slice();
+            
+            //取り出した値の追加
+            //let deepClone = JSON.parse(JSON.stringify(props.movies));
+            removeFavorites.splice(props.id, 1)
   
+            //favoritesの再定義
+            props.setFavorites(removeFavorites)
+  
+          //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
+        } else {
+            setIsAdd(true)
+        //➁追加の処理
+        props.favorites=e.target.value
+                 
+        // If no favorites exist, clone the movie and copy into newFavorites.
+        let newFavorites = favorites.slice();
+
+        //取り出した値の追加
+        //let deepClone = JSON.parse(JSON.stringify(props.movies));
+        newFavorites.push(props.movies)
+
+        //favoritesの再定義
+        setFavorites(newFavorites)
+        }
+
+    } 
+    
+    let isAddState
+        if (isAdd) {
+           isAddState="削除"
+    
+        } else {
+        　 isAddState="追加"
+     
+    }
     return (
        //中央ぞろえ
        <Div style={{margin:'auto'}} className="movie"> 
@@ -165,17 +144,17 @@ const Detail =(props) => {
 
             <h1>{props.movies[props.id].title}</h1> 
             <h2>Overview</h2>
-            <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3>
+            {/* <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3> */}
             <p>{props.movies[props.id].overview}</p>
             <h3>Release Date</h3>
             <p>{props.movies[props.id].release_date}</p>
             <h3>上映時間</h3>
-            <p>{props.movies[props.id].runtime}</p>
+            {/* <p>{props.movies[props.id].runtime}</p> */}
            
-            {/* <StyledButton  onClick={(e)=>{displayAddFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+            <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
             
-                {isAddState()}
-            </StyledButton> */}
+                {isAddState}
+            </StyledButton> 
             <Link onClick={(e)=>{handleId()}} to='/'>
                 <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
                     Back To Sarch Screen
