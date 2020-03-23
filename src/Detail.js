@@ -153,6 +153,10 @@ const Detail =(props) => {
     // const isTAB=useMediaQuery({
     //     query: "(max-width: 1024px)"
     // })
+
+    // let genresArray =props.details.genres.map(item=>item.name)
+
+    
     return (
     <>
         {isPC ? (
@@ -192,7 +196,7 @@ const Detail =(props) => {
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    <h3>ジャンル{props.details.genres.name.join(" , ")}</h3>
+                    {/* <h3>ジャンル{genresArray.join(" , ")}</h3> */}
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{props.movies[props.id].release_date}</p>

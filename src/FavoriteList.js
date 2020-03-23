@@ -85,7 +85,7 @@ const FavoriteList =(props) => {
       const title =() =>{
           if (props.favorites[props.id].title != null) {
               return (
-                <StyledTitle>{props.favoritess[props.id].title}</StyledTitle> 
+                <StyledTitle>{props.favorites[props.id].title}</StyledTitle> 
               )
           }
       }
