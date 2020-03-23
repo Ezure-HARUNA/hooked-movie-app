@@ -154,7 +154,10 @@ const Detail =(props) => {
     //     query: "(max-width: 1024px)"
     // })
 
-    // let genresArray =props.details.genres.map(item=>item.name)
+    let genresArray =props.details.genres.map(genre=>genre.name)
+
+    // const { urlKey } = props;
+    // const url = `https://www.youtube.com/watch?v=${urlKey}`;
 
     
     return (
@@ -168,12 +171,12 @@ const Detail =(props) => {
                 <h1>{props.movies[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                {/* <h3>{props.details.genres.name.join(" , ")}</h3> */}
+                <h3>ジャンル{genresArray.join(" , ")}</h3>
                 <p>{props.movies[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{props.movies[props.id].release_date}</p>
                 <h3>上映時間</h3>
-                {/* <p>{props.details.runtime}</p> */}
+                <p>{props.details.results[0].runtime}分</p>
 
                 <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
                     {isAddState}
@@ -183,6 +186,11 @@ const Detail =(props) => {
                     Back To Sarch Screen
                 </StyledButton2>
                 </Link>
+                <a href= {props.details.homepage}>リンク</a>
+                {/* <PlayButton onClick={() => window.open(url, "_blank")}>
+                    <PlayIcon />
+                    Watch Trailer
+                </PlayButton> */}
             </Div2>
         </Div>       
 　　　　
@@ -196,12 +204,12 @@ const Detail =(props) => {
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    {/* <h3>ジャンル{genresArray.join(" , ")}</h3> */}
+                    <h3>ジャンル{genresArray.join(" , ")}</h3>
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{props.movies[props.id].release_date}</p>
                     <h3>上映時間</h3>
-                    <p>{props.movies[props.id].runtime}</p>
+                    <p>{props.details.results[0].runtime}分</p>
 
                     <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
                         {isAddState}
@@ -211,6 +219,11 @@ const Detail =(props) => {
                         Back To Sarch Screen
                     </StyledButton2>
                     </Link>
+                    <a href= "${props.details.homepage}" >リンク</a>
+                    {/* <PlayButton onClick={() => window.open(url, "_blank")}>
+                        <PlayIcon />
+                        Watch Trailer
+                    </PlayButton> */}
                 </Div3>
             </DivSP>
 
