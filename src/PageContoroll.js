@@ -1,24 +1,23 @@
-//➀インポート
 import React from "react";
-//import styled from "styled-components"
-
-    //マテリアルUIのインポート
+import styled from "styled-components"
 import Pagination from '@material-ui/lab/Pagination'
 
-//➁コンポーネント
+const StyledPagination=styled(Pagination)`
+    color: white!important;
+`
+
+
 const PageContoroll =() => {
 
-        //➂レンダリング
+        
         return (
-            //中央ぞろえ
            <div style={{margin:'auto',width:'50%'}}> 
-               <Pagination  count={10} />
+               <StyledPagination  count={10} color="primary" />
            </div>
         )
 
 }
 
-//➃エクスポート
 export default PageContoroll
 
 

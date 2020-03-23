@@ -26,9 +26,19 @@ const useStyles = makeStyles({
 
 const Div= styled.div``
 
+const StyledListItemText=styled(ListItemText)`
+ :hover {
+    color: blue!important;
+  }
+`
+
 const StyledLink=styled(Link)`
-text-decoration:none!important;
-color: gray!important;`
+  /* text-decoration:none!important; */
+  color: gray!important;
+  :hover {
+    color: blue!important;
+  }
+`
 
 const StyledButton = styled(Button)`
 background: blue;
@@ -108,7 +118,7 @@ export default function Test(props) {
           {/* READMEのリンク */}
           <ListItem>
           <ListItemIcon>< MenuBookRoundedIcon /></ListItemIcon>
-          <ListItemText primary="README"/>
+          <StyledListItemText primary="README"/>
           </ListItem>
           {/* </Link> */}
 
@@ -118,7 +128,7 @@ export default function Test(props) {
           {/* ログアウトのリンク */}
           <ListItem>
           <ListItemIcon>< MeetingRoomRoundedIcon /></ListItemIcon>
-          <ListItemText primary="ログアウト"/>
+          <StyledListItemText primary="ログアウト"/>
           </ListItem>
           {/* </Link> */}
 

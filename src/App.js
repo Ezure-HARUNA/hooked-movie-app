@@ -1,7 +1,6 @@
 //➀インポート
 import React, {useEffect} from "react"
 import Search from "./Search"
-import List from "./List";
 import PageContoroll from "./PageContoroll";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -15,33 +14,34 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 //➁コンポーネント
 
 const Div = styled.div `
-min-height:100vh;
-width:100vw;
-background-color: #282A3A;
-z-index: 1!important;
-color:white!important;
+  min-height:100vh;
+  width:100vw;
+  background-color: #282A3A;
+  z-index: 1!important;
+  color:white!important;
 
 .errorMessage {
   margin: 0 auto;
   font-weight:bold;
   color: red;
 }
-.moviesList {
+/* .moviesList {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
-}
-`
+  justify-content:flex-start!important;
+}*/
+` 
 const Ul =styled.ul`
-display:flex;
-flex-wrap: wrap;
+  display:flex;
+  flex-flow: row wrap; 
+  justify-content: flex-start!important;
 `
 
 
 const App =(props) => {
-     //
-     const setMovies=props.setMovies
-     const setDetails=props.setDetails
+    
+    const setMovies=props.setMovies
+    const setDetails=props.setDetails
     const [loading, setLoading] = React.useState(true)
     //const [movies, setMovies] = React.useState([])
     const [errorMessage, setErrorMessage] = React.useState(null)
@@ -59,7 +59,7 @@ const App =(props) => {
 
           });
          
-  }, []);
+  }, );
   
 
   
@@ -92,7 +92,7 @@ const App =(props) => {
 
       // fetch(`https://api.themoviedb.org/3/search/person?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
      //fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
-     fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id].i}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
+     fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id]}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
 
           
         .then(res => res.json())

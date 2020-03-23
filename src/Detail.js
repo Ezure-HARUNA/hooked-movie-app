@@ -7,10 +7,11 @@ import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import BackspaceRoundedIcon from '@material-ui/icons/BackspaceRounded';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import NO_IMG from "./img/noImage.png"
 
 
 
-const imgUrl = "https://image.tmdb.org/t/p/w1280/";
+const detailImgUrl = "https://image.tmdb.org/t/p/w1280/";
 
 const Img =styled.img`
 width:100%;
@@ -20,18 +21,22 @@ height:100%;
 const Div=styled.div`
    /* position: relative; */
    min-height:100vh;
-   width:100vw;
+   /* width:100vw; */
    background-color: #282A3A;
    margin-top: 10px!important;
    color: white;
    overflow: hidden!important;
 `
+const Div2=styled.div`
+    padding: 0 3%!important;
+`
+const Div3=styled.div`
+    padding: 0 3%;`
 
-const DivPc=styled.div`
+const DivSP=styled.div`
 display: flex!important;
-flex-wrap: wrap;
-overflow: hidden!important;
-color: white;
+flex-wrap: wrap!important;
+color: red;
 `
 
 const StyledStarRoundedIcon=styled(StarRoundedIcon)`
@@ -65,7 +70,7 @@ cursor: pointer;
 
 `
 
-
+const imgUrl = "https://image.tmdb.org/t/p/w1280/";
 
 //const DEFAULT_IMG ="https://image.tmdb.org/t/p/w185/3L05HQS4GiR8PXCq0JjqXShoLRF.jpg"
 //No Image用の画像
@@ -100,7 +105,7 @@ const Detail =(props) => {
         e.preventDefault()
         if (isAdd) {
             setIsAdd(false)
-            props.movies(e.target.props.movies.value)
+            // props.movies(e.target.props.movies.value)
             // If no favorites exist, clone the movie and copy into newFavorites.
             const removeFavorites = props.favorites.slice();
             
@@ -115,7 +120,7 @@ const Detail =(props) => {
         } else {
             setIsAdd(true)
             //➁追加の処理
-            props.movies=e.target.props.movies.value
+            // props.movies=e.target.props.movies.value
                  
             // If no favorites exist, clone the movie and copy into newFavorites.
             let newFavorites = favorites.slice();
@@ -140,50 +145,54 @@ const Detail =(props) => {
     }
 
     const theme = useTheme();
-    const isSP=useMediaQuery(theme.breakpoints.up('sm'));
+    const isPC=useMediaQuery(theme.breakpoints.up('sm'));
+
+    const poster =
+    props.movies[props.id].backdrop_path === "N/A" ? NO_IMG : detailImgUrl+props.movies[props.id].backdrop_path
 
     // const isTAB=useMediaQuery({
     //     query: "(max-width: 1024px)"
     // })
     return (
     <>
-        {isSP ? (
+        {isPC ? (
         <Div style={{margin:'auto'}} className="movie"> 
             <Img 
-                src={imgUrl+props.movies[props.id].backdrop_path}
+                src={poster}
             />
-            {rating()}
+            <Div2>
+                <h1>{props.movies[props.id].title}</h1> 
+                {rating()}
+                <h2>Overview</h2>
+                {/* <h3>{props.details.genres.name.join(" , ")}</h3> */}
+                <p>{props.movies[props.id].overview}</p>
+                <h3>Release Date</h3>
+                <p>{props.movies[props.id].release_date}</p>
+                <h3>上映時間</h3>
+                {/* <p>{props.details.runtime}</p> */}
 
-            <h1>{props.movies[props.id].title}</h1> 
-            <h2>Overview</h2>
-            <h3>{props.details.genres.name.join(" , ")}</h3>
-            <p>{props.movies[props.id].overview}</p>
-            <h3>Release Date</h3>
-            <p>{props.movies[props.id].release_date}</p>
-            <h3>上映時間</h3>
-            <p>{props.details.runtime}</p>
-
-            <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
-                {isAddState}
-            </StyledButton> 
-            <Link onClick={(e)=>{handleId()}} to='/'>
-            <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
-                Back To Sarch Screen
-            </StyledButton2>
-            </Link>
+                <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+                    {isAddState}
+                </StyledButton> 
+                <Link onClick={(e)=>{handleId()}} to='/'>
+                <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
+                    Back To Sarch Screen
+                </StyledButton2>
+                </Link>
+            </Div2>
         </Div>       
 　　　　
            
-        ) : ( //タブレット・スマホ版
-            <DivPc>
+        ) : ( //PC版
+            <DivSP>
                 <Img 
                     src={imgUrl+props.movies[props.id].backdrop_path}
                 />
-                <div className="childContainer">
-                    {rating()}
+                <Div3 className="childContainer">
                     <h1>{props.movies[props.id].title}</h1> 
+                    {rating()}
                     <h2>Overview</h2>
-                    {/* <h3>ジャンル{props.movies[props.id].genres.name.join(" , ")}</h3> */}
+                    <h3>ジャンル{props.details.genres.name.join(" , ")}</h3>
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{props.movies[props.id].release_date}</p>
@@ -198,8 +207,8 @@ const Detail =(props) => {
                         Back To Sarch Screen
                     </StyledButton2>
                     </Link>
-                </div>
-            </DivPc>
+                </Div3>
+            </DivSP>
 
         )}
     </>

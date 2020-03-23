@@ -48,10 +48,6 @@ const StyledLink = styled(Link)`
 
 const Header =(props) =>{
     
-  const handleId= (e)=>{
-    //e.preventDefault()
-    props.setId(props.id)
-}
     const useStyles = makeStyles(theme => ({
         root: {
           flexGrow: 1,

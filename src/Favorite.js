@@ -1,5 +1,5 @@
 //➀インポート
-import React, {useEffect} from "react"
+import React from "react"
 import Search from "./Search"
 import FavoriteList from "./FavoriteList";
 import PageContoroll from "./PageContoroll";
@@ -9,7 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
   import styled from "styled-components"
 
 　//APIの導入
-　const MOVIE_POPULAR_URL = "https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=1";
+　//const MOVIE_POPULAR_URL = "https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=1";
   //const MOVIE_UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=1";
   
 //➁コンポーネント
@@ -39,8 +39,7 @@ flex-wrap: wrap;
 
 
 const Favorite =(props) => {
-     //
-    const movies =props.movies
+    
     const setMovies=props.setMovies
     const [loading, setLoading] = React.useState(true)
     //const [movies, setMovies] = React.useState([])

@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React from "react"
 import {Link} from 'react-router-dom'
 import NO_IMG from "./img/noImage.png"
 import styled from "styled-components"
@@ -34,8 +34,8 @@ const Div=styled.div`
   
   @media screen and (max-width: 375px) {
     width:150px!important;
-    margin: 0 auto;
-    justify-content:space-between!important;
+    /* margin: 0 auto; */
+    /* justify-content:space-between!important; */
     width:40%!important;
   }
 `
@@ -73,7 +73,7 @@ const List =(props) => {
     // let genresArray = props.movies[props.id].genres.map(item => item.name);
 
      const rating = () => {
-        if (props.movies[props.id].vote_average != 0) {
+        if (props.movies[props.id].vote_average !== 0) {
           return (
             <StyledRating>
               <StyledStarRoundedIcon />
@@ -83,7 +83,7 @@ const List =(props) => {
         }
       };
       const title =() =>{
-          if (props.movies[props.id].title != null) {
+          if (props.movies[props.id].title !== null) {
               return (
                 <StyledTitle>{props.movies[props.id].title}</StyledTitle> 
               )
