@@ -23,7 +23,7 @@ const Router =() =>{
 
     const moviecards=movies.map((movie, id) =>{
       return (
-   <List setId={setId} id={id} movie={movie} movies={movies}/>
+         <List setId={setId} id={id} movie={movie} movies={movies}/>
       )
       })
 
@@ -41,11 +41,15 @@ const Router =() =>{
           <Header id={id} setId={setId}></Header>
           <Route exact path='/' render={() => <App moviecards={moviecards} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}></Route>
           <Route path='/detail' render={() => <Detail newFavorites={newFavorites} movies={movies} details={details} id={id} setId={setId} favorites={favorites} setFavorites={setFavorites}></Detail>}></Route>
-          <Route path='/list' render={() => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
+          <ul>
+               <Route path='/list' render={() => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
+          </ul>
           <Route path='/upcoming' render={() => <UpComing movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
           <Route path='/favorite' render={()=><Favorite favoritecards={favoritecards} avorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
-          {/* <Route path='/favoritelist' render={()=> <FavoriteList favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route> */}
-       </BrowserRouter>
+          <ul>
+               <Route path='/favoritelist' render={()=> <FavoriteList favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route>
+          </ul>
+          </BrowserRouter>
     </Div>
     )
 }

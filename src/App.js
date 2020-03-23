@@ -54,7 +54,7 @@ const App =(props) => {
           .then(res => res.json())
           .then(res => { //responseでも可能(任意) json→連想配列
               setMovies(res.results)
-              setDetails(res)
+              setDetails(res.genres)
               setLoading(false)
 
           });
@@ -100,7 +100,7 @@ const App =(props) => {
             if (res != null) {
               setLoading(false)
               setMovies(res.results)
-              setDetails(res)
+              setDetails(res.genres)
             } else { //検索失敗
               setErrorMessage(true)
               setLoading(false)
