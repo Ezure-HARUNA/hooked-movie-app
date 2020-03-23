@@ -18,7 +18,7 @@ const Div=styled.div`
    margin-top: 10px!important;
    transition: transform;
    transition-duration: 0.2s;
-   color: white;
+   color: white!important;
     
    :hover {
         cursor: pointer;
@@ -66,7 +66,7 @@ const StyledTitle=styled.p`
 
 const FavoriteList =(props) => {
     //img→検索結果を表示
-    const poster =
+    const posterf =
     props.favorites[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.favorites[props.id].poster_path
     //  props.movies[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].poster_path
 
@@ -100,31 +100,16 @@ const FavoriteList =(props) => {
   
     return (
        //中央ぞろえ
-       <Div style={{margin:'auto'}} className="movie"> 
-             {/* <h2>{genresArray().join(" , ")}</h2>  */}
-            {rating()}
-            <Link onClick={(e)=>{handleId()}} to='/detail'>
-            <Img 
-                //  onClick={handleListSubmit}
-                 src={poster}
-              />
-            </Link>
-              {/* <PageContoroll></PageContoroll> */}
-            {title()}
-
-
-            {/* {props.removeMode && <RemoveFavorite favorites={props.favorites} setFavorites={props.setFavorites} movie={props.movie} id={props.id}/>} */}
-            
-            {/* <RemoveFavorite favorites={props.favorites} setFavorites={props.setFavorites} movie={props.movie}/> */}
-            {/* <p>{props.movies[props.id].title}</p>  */}
-            {/* <p>{props.movies[props.id].release_date}</p>  */}
-            {/* <p>{props.movies[props.id].overview}</p>  */}
-            {/* </Grid> */}
-            
-        
-            
-
-        </Div>
+      <Div style={{margin:'auto'}} className="movie"> 
+              {/* <h2>{genresArray().join(" , ")}</h2>   */}
+              {rating()}
+              <Link onClick={(e)=>{handleId()}} to='/detail'>
+                <Img 
+                  src={posterf}
+                />
+              </Link>
+              {title()}
+      </Div>
     )
 }
 

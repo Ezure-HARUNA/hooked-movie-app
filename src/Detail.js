@@ -97,7 +97,6 @@ const Detail =(props) => {
 
 
     const favorites=props.favorites
-    const setFavorites=props.setFavorites
 
 
     const[isAdd, setIsAdd]=React.useState(false)
@@ -130,7 +129,7 @@ const Detail =(props) => {
             newFavorites.push(props.movies)
 
             //favoritesの再定義
-            setFavorites(newFavorites)
+            props.setFavorites(newFavorites)
             }
 
     } 
@@ -154,7 +153,7 @@ const Detail =(props) => {
     //     query: "(max-width: 1024px)"
     // })
 
-    let genresArray =props.details.genres.map(item=>item.name)
+    // let genresArray =props.details.genres.map(item=>item.name)
 
     // const { urlKey } = props;
     // const url = `https://www.youtube.com/watch?v=${urlKey}`;
@@ -171,7 +170,7 @@ const Detail =(props) => {
                 <h1>{props.movies[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                <h3>ジャンル{genresArray.join(" , ")}</h3>
+                {/* <h3>ジャンル{genresArray.join(" , ")}</h3> */}
                 <p>{props.movies[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{props.movies[props.id].release_date}</p>
@@ -186,7 +185,6 @@ const Detail =(props) => {
                     Back To Sarch Screen
                 </StyledButton2>
                 </Link>
-                <a href= {props.details.homepage}>リンク</a>
                 {/* <PlayButton onClick={() => window.open(url, "_blank")}>
                     <PlayIcon />
                     Watch Trailer
@@ -204,7 +202,7 @@ const Detail =(props) => {
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    <h3>ジャンル{genresArray.join(" , ")}</h3>
+                    {/* <h3>ジャンル{genresArray.join(" , ")}</h3> */}
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{props.movies[props.id].release_date}</p>
@@ -219,7 +217,6 @@ const Detail =(props) => {
                         Back To Sarch Screen
                     </StyledButton2>
                     </Link>
-                    <a href= "${props.details.homepage}" >リンク</a>
                     {/* <PlayButton onClick={() => window.open(url, "_blank")}>
                         <PlayIcon />
                         Watch Trailer

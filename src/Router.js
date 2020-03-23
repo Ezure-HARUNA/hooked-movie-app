@@ -43,8 +43,8 @@ const Router =() =>{
           <Route path='/detail' render={() => <Detail newFavorites={newFavorites} movies={movies} details={details} id={id} setId={setId} favorites={favorites} setFavorites={setFavorites}></Detail>}></Route>
           <Route path='/list' render={() => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
           <Route path='/upcoming' render={() => <UpComing movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
-          <Route exaxt path='/favorite' render={()=><Favorite favoritecards={favoritecards} id={id}></Favorite>}></Route>
-          <Route path='/favoritelist' render={()=> <Favorite favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
+          <Route path='/favorite' render={()=><Favorite favoritecards={favoritecards} avorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
+          {/* <Route path='/favoritelist' render={()=> <FavoriteList favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route> */}
        </BrowserRouter>
     </Div>
     )

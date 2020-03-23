@@ -1,8 +1,6 @@
 //➀インポート
-import React, { useEffect } from "react"
-import Search from "./Search"
+import React from "react"
 import PageContoroll from "./PageContoroll";
-import CircularProgress from '@material-ui/core/CircularProgress';
 
   //styled-componentsをインポート
   import styled from "styled-components"
@@ -20,16 +18,6 @@ background-color: #282A3A;
 z-index: 1!important;
 color:white!important;
 
-.errorMessage {
-  margin: 0 auto;
-  font-weight:bold;
-  color: red;
-}
-.moviesList {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
 `
 const Ul =styled.ul`
 display:flex;
@@ -39,24 +27,24 @@ flex-wrap: wrap;
 
 const Favorite =(props) => {
     
-    const [loading, setLoading] = React.useState(true)
-    //const [movies, setMovies] = React.useState([])
-    const [errorMessage, setErrorMessage] = React.useState(null)
-    //const [details, setDetails] =React.useState([])
+    // const [loading, setLoading] = React.useState(true)
+    // //const [movies, setMovies] = React.useState([])
+    // const [errorMessage, setErrorMessage] = React.useState(null)
+    // //const [details, setDetails] =React.useState([])
 
-    // useContext CTX
+    // // useContext CTX
 
     
-    useEffect(() => {
-      fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id]}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
-          .then(res => res.json())
-          .then(res => { //responseでも可能(任意) json→連想配列
-              props.setFavorites(res.results)
-              setLoading(false)
+  //   useEffect(() => {
+  //     fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id]}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
+  //         .then(res => res.json())
+  //         .then(res => { //responseでも可能(任意) json→連想配列
+  //             props.setFavorites(res.results)
+  //             setLoading(false)
             
-          });
+  //         });
          
-  });
+  // });
   
 
   
@@ -77,27 +65,27 @@ const Favorite =(props) => {
 
     //検索の分岐別の処理
     //useEffect
-    const search = searchValue => {
-      //検索中
-      setLoading(true)
-      setErrorMessage(null)
+    // const search = searchValue => {
+    //   //検索中
+    //   setLoading(true)
+    //   setErrorMessage(null)
 
-      // fetch(`https://api.themoviedb.org/3/search/person?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
-     //fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
-     fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id].id}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
+    //   // fetch(`https://api.themoviedb.org/3/search/person?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
+    //  //fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
+    //  fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id].id}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
 
           
-        .then(res => res.json())
-        .then(res => { //検索成功
-            if (res != null) {
-              setLoading(false)
-              props.setFavorites(res.results)
-            } else { //検索失敗
-              setErrorMessage(true)
-              setLoading(false)
-            }
-        })
-    }
+    //     .then(res => res.json())
+    //     .then(res => { //検索成功
+    //         if (res != null) {
+    //           setLoading(false)
+    //           props.setFavorites(res.results)
+    //         } else { //検索失敗
+    //           setErrorMessage(true)
+    //           setLoading(false)
+    //         }
+    //     })
+    // }
     
 
      
@@ -108,10 +96,10 @@ const Favorite =(props) => {
     <Div>
        
      
-      <Search search={search}></Search>
+      {/* <Search search={search}></Search>
       {/* <img src="https://image.tmdb.org/t/p/w185/3L05HQS4GiR8PXCq0JjqXShoLRF.jpg" alt=""/> */}
       {/* 分岐ごとの表示 */}
-      <div className="moviesList">
+      {/* <div className="moviesList">
         
         {loading && !errorMessage ? ( //loading=true/errorMessage=falseの場合
           // <span>loading...</span>
@@ -122,8 +110,16 @@ const Favorite =(props) => {
           <Ul>
             {props.favoritecards}
           </Ul>
-        )} 
-      </div>
+        )}  */}
+      {/* </div> */} 
+      {props.favorites !== null ? (
+          <Ul>
+            {props.favoritecards}
+          </Ul>
+ 
+          ) : (
+            <h2>お気に入りを追加してね</h2>
+          )}
         <PageContoroll></PageContoroll> 
     </Div>
     
