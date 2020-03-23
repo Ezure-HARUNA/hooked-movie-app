@@ -154,7 +154,7 @@ const Detail =(props) => {
     //     query: "(max-width: 1024px)"
     // })
 
-    let genresArray =props.details.genres.map(genre=>genre.name)
+    let genresArray =props.details.genres.map(item=>item.name)
 
     // const { urlKey } = props;
     // const url = `https://www.youtube.com/watch?v=${urlKey}`;
@@ -176,7 +176,7 @@ const Detail =(props) => {
                 <h3>Release Date</h3>
                 <p>{props.movies[props.id].release_date}</p>
                 <h3>上映時間</h3>
-                <p>{props.details.results[0].runtime}分</p>
+                <p>{props.details.runtime}分</p>
 
                 <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
                     {isAddState}
