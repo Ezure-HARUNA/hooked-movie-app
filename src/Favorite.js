@@ -40,7 +40,6 @@ const Favorite =(props) => {
   //         .then(res => res.json())
   //         .then(res => { //responseでも可能(任意) json→連想配列
   //             props.setFavorites(res.results)
-  //             setLoading(false)
             
   //         });
          
