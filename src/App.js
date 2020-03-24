@@ -1,6 +1,7 @@
 //➀インポート
 import React, {useEffect} from "react"
 import Search from "./Search"
+import List from "./List"
 import PageContoroll from "./PageContoroll";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -8,7 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
   import styled from "styled-components"
 
 　//APIの導入
-　const MOVIE_POPULAR_URL = "https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=1";
+// 　const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=${props.pages}`;
   //const MOVIE_UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=1";
   
 //➁コンポーネント
@@ -39,15 +40,18 @@ const Ul =styled.ul`
 
 
 const App =(props) => {
-    
+  
     const setMovies=props.setMovies
     const setDetails=props.setDetails
+    const pages=props.pages
+    const setPages=props.setPages
     const [loading, setLoading] = React.useState(true)
-    //const [movies, setMovies] = React.useState([])
+    // const [movies, setMovies] = React.useState([])
     const [errorMessage, setErrorMessage] = React.useState(null)
     //const [details, setDetails] =React.useState([])
-    
 
+  //APIの導入
+　const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=${pages}`;
     
     useEffect(() => {
       fetch(MOVIE_POPULAR_URL)
@@ -55,6 +59,7 @@ const App =(props) => {
           .then(res => { //responseでも可能(任意) json→連想配列
               setMovies(res.results)
               setDetails(res.genres)
+              setPages(res.page)
               setLoading(false)
 
           });
@@ -66,12 +71,11 @@ const App =(props) => {
           //map関数の引数をreturnしてあげる必要がある
               //配列  　　　//配列 //配列(movies)に用意されたメソッド(あらかじめ用意された関数)　//movie=連想配列(要素)
               //メソッドは作ることもできる
-              // const moviecards=movies.map((movie, id) =>{
-              //   //??????
-              //   return (
-              //   <List setId={props.setId} id={id} movie={movie} movies={movies}/>
-              //   )
-              //   })
+              const moviecards=props.movies.map((movie, id) =>{
+                return (
+                   <List setId={props.setId} id={id} movie={movie} movies={props.movies}/>
+                )
+                })
     
               /*
               const moviecards= [<List key={`${id}-{res.results[0].title}`} movie={movie} />
@@ -92,20 +96,31 @@ const App =(props) => {
 
       // fetch(`https://api.themoviedb.org/3/search/person?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
      //fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
-     fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id]}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
+     fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=${pages}&include_adult=false`)
 
           
         .then(res => res.json())
         .then(res => { //検索成功
-            if (res != null) {
+            if (res !== null) {
               setLoading(false)
               setMovies(res.results)
-              setDetails(res.genres)
             } else { //検索失敗
               setErrorMessage(true)
               setLoading(false)
             }
         })
+        // fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id]}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
+        // .then(res => res.json())
+        // .then(res => { //検索成功
+        //     if (res != null) {
+        //       setLoading(false)
+        //       setDetails(res.genres)
+        //       setPages(res.page))
+        //     } else { //検索失敗
+        //       setErrorMessage(true)
+        //       setLoading(false)
+        //     }
+        // })
     }
 
   return (
@@ -125,11 +140,11 @@ const App =(props) => {
           <h3 className="errorMessage">検索結果 なし</h3>
         ): (
           <Ul>
-            {props.moviecards}
+            {moviecards}
           </Ul>
         )} 
       </div>
-        <PageContoroll></PageContoroll> 
+        <PageContoroll pages={props.pages}></PageContoroll> 
     </Div>
     
   )

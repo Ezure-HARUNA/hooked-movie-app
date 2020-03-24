@@ -1,7 +1,6 @@
 //➀インポート
 import React, {useEffect} from "react"
 import Search from "./Search"
-import List from "./List";
 import PageContoroll from "./PageContoroll";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -40,8 +39,11 @@ flex-wrap: wrap;
 
 const App =(props) => {
      //
-     const movies =props.movies
+     
      const setMovies=props.setMovies
+     const setDetails=props.setDetails
+     const setPages=props.setPages
+    
     const [loading, setLoading] = React.useState(true)
     //const [movies, setMovies] = React.useState([])
     const [errorMessage, setErrorMessage] = React.useState(null)
@@ -52,7 +54,9 @@ const App =(props) => {
       fetch( MOVIE_UPCOMING_URL)
           .then(res => res.json())
           .then(res => { //responseでも可能(任意) json→連想配列
-              setMovies(res)
+              setMovies(res.results)
+              setDetails(res.genres)
+              setPages(res.page)
               setLoading(false)
             
           });
@@ -70,14 +74,17 @@ const App =(props) => {
       setLoading(true)
       setErrorMessage(null)
 
-      fetch( `https://api.themoviedb.org/3/movie/${movies.id}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
+      fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id]}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
 
           
         .then(res => res.json())
         .then(res => { //検索成功
             if (res.results != null) {
               setLoading(false)
-              setMovies(res)
+              setMovies(res.results)
+              setDetails(res.genres)
+              setPages(res.page)
+              
             } else { //検索失敗
               setErrorMessage(true)
               setLoading(false)
@@ -89,13 +96,13 @@ const App =(props) => {
      
           //map関数の引数をreturnしてあげる必要がある
               //配列  　　　//配列 //配列(movies)に用意されたメソッド(あらかじめ用意された関数)　//movie=連想配列(要素)
-              //メソッドは作ることもできる
-          const moviecards=props.movies.map((movie, id) =>{
-            //??????
-            return (
-            <List setId={props.setId} id={id} movie={movie} movies={movies}/>
-            )
-            })
+          //     //メソッドは作ることもできる
+          // const moviecards=props.movies.map((movie, id) =>{
+          //   //??????
+          //   return (
+          //   <List setId={props.setId} id={id} movie={movie} movies={movies}/>
+          //   )
+          //   })
 
           /*
           const moviecards= [<List key={`${id}-{res.results[0].title}`} movie={movie} />
@@ -122,7 +129,7 @@ const App =(props) => {
           <h3 className="errorMessage">検索結果 なし</h3>
         ): (
           <Ul>
-            {moviecards}
+            {props.moviecards}
           </Ul>
         )} 
       </div>

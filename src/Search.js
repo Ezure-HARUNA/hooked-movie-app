@@ -68,24 +68,7 @@ const Search =(props) =>{
         e.preventDefault()
         setSearchValue(e.target.value)
     }
-        /*
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=ja-JP&query=${searchValue}&page=1&include_adult=false`)
-            .catch(err=>{
-                if (err) console.error(err)
-            })
-            .then(res=>res.json())
-            .then(res=> {
-                // setTitle(res.results[0].title)
-                // setImg(res.results[0].poster_path)
-                // setOverview(res.results[0].overview)
-                // setYear(res.results[0].release_date)
-                // console.log(setTitle)
-                // console.log(setImg)
-                // console.log(setOverview)
-                // console.log(setYear)
-    
-            })
-            */
+       
         
             
         const resetInput =()=>{
@@ -119,8 +102,8 @@ const Search =(props) =>{
               <form className="searchInput"> 
                 {/* onSubmit={(e)=>{handleSearchSubmit(e)}}  */}
                   {/* 定義と実行。returnでは定義の中に実行を入れる */}
-                 <StyledInputBase value={searchValue} onChange={handleSearchInputChange} type="text" placeholder=" 入力してください"  inputProps={{ 'aria-label': 'search' }}/>
-                 <StyledButton onClick={callSearchClick} type="submit" variant="contained" color="primary" ><SearchIcon style={{ fontSize: 20 }} color="white"></SearchIcon>検索</StyledButton>
+                 <StyledInputBase value={searchValue} onChange={(e)=>{handleSearchInputChange(e)}} type="text" placeholder=" 入力してください"  inputProps={{ 'aria-label': 'search' }}/>
+                 <StyledButton onClick={(e)=>{callSearchClick(e)}} type="submit" variant="contained" color="primary" ><SearchIcon style={{ fontSize: 20 }} color="white"></SearchIcon>検索</StyledButton>
                  {/* title={title} setTitle={setTitle}  img={img} setImg={setImg} overview={overview} setOverview={setOverview} year={year} setYear={setYear} */}
               </form>
                  

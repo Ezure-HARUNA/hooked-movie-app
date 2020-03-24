@@ -153,7 +153,8 @@ const Detail =(props) => {
     //     query: "(max-width: 1024px)"
     // })
 
-    let genresArray =props.details.map(item=>item.name)
+    // let genresArray =props.details.map(item=>item.name)
+    
 
     // const { urlKey } = props;
     // const url = `https://www.youtube.com/watch?v=${urlKey}`;
@@ -170,12 +171,12 @@ const Detail =(props) => {
                 <h1>{props.movies[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                <h3>ジャンル{genresArray.join(" , ")}</h3>
+                {/* <h3>ジャンル{genresArray.join(" , ")}</h3> */}
                 <p>{props.movies[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{props.movies[props.id].release_date}</p>
                 <h3>上映時間</h3>
-                <p>{props.details.runtime}分</p>
+                {/* <p>{props.details.runtime}分</p> */}
 
                 <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
                     {isAddState}
@@ -202,12 +203,12 @@ const Detail =(props) => {
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    <h3>ジャンル{genresArray.name.join(" , ")}</h3>
+                    {/* <h3>ジャンル{genresArray.join(" , ")}</h3> */}
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{props.movies[props.id].release_date}</p>
                     <h3>上映時間</h3>
-                    <p>{props.details.runtime}分</p>
+                    {/* <p>{props.details.runtime}分</p> */}
 
                     <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
                         {isAddState}
