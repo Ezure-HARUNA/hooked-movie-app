@@ -102,8 +102,8 @@ const Search =(props) =>{
               <form className="searchInput"> 
                 {/* onSubmit={(e)=>{handleSearchSubmit(e)}}  */}
                   {/* 定義と実行。returnでは定義の中に実行を入れる */}
-                 <StyledInputBase value={searchValue} onChange={(e)=>{handleSearchInputChange(e)}} type="text" placeholder=" 入力してください"  inputProps={{ 'aria-label': 'search' }}/>
-                 <StyledButton onClick={(e)=>{callSearchClick(e)}} type="submit" variant="contained" color="primary" ><SearchIcon style={{ fontSize: 20 }} color="white"></SearchIcon>検索</StyledButton>
+                 <StyledInputBase value={searchValue} onChange={handleSearchInputChange} type="text" placeholder=" 入力してください"  inputProps={{ 'aria-label': 'search' }}/>
+                 <StyledButton onClick={callSearchClick} type="submit" variant="contained" color="primary" ><SearchIcon style={{ fontSize: 20 }} color="white"></SearchIcon>検索</StyledButton>
                  {/* title={title} setTitle={setTitle}  img={img} setImg={setImg} overview={overview} setOverview={setOverview} year={year} setYear={setYear} */}
               </form>
                  

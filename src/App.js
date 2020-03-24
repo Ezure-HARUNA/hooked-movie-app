@@ -42,7 +42,7 @@ const Ul =styled.ul`
 const App =(props) => {
   
     const setMovies=props.setMovies
-    // const setDetails=props.setDetails
+    const setDetails=props.setDetails
     const pages=props.pages
     const setPages=props.setPages
     const [loading, setLoading] = React.useState(true)
@@ -64,7 +64,12 @@ const App =(props) => {
               setLoading(false)
 
           });
-         
+
+      fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US") 
+          .then(res => res.json())
+          .then(res => {
+            setDetails(res.genres)
+          })
   }, );
   
 
@@ -97,18 +102,24 @@ const App =(props) => {
               setLoading(false)
             }
         })
+
+        fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US")
         // fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id]}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
-        // .then(res => res.json())
-        // .then(res => { //検索成功
-        //     if (res != null) {
-        //       setLoading(false)
-        //       setDetails(res.genres)
-        //       setPages(res.page))
-        //     } else { //検索失敗
-        //       setErrorMessage(true)
-        //       setLoading(false)
-        //     }
-        // })
+        .then(res => res.json())
+        .then(res => { //検索成功
+            if (res != null) {
+              setLoading(false)
+              setPages(res.page)
+            } else { //検索失敗
+              setErrorMessage(true)
+              setLoading(false)
+            }
+        })
+        fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US") 
+        .then(res => res.json())
+        .then(res => {
+          setDetails(res.genres)
+        })
     }
 
       //map関数の引数をreturnしてあげる必要がある
