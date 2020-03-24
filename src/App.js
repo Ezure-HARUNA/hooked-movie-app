@@ -2,7 +2,7 @@
 import React, {useEffect} from "react"
 import Search from "./Search"
 import List from "./List"
-import PageContoroll from "./PageContoroll";
+// import PageContoroll from "./PageContoroll";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
   //styled-componentsをインポート
@@ -42,7 +42,7 @@ const Ul =styled.ul`
 const App =(props) => {
   
     const setMovies=props.setMovies
-    const setDetails=props.setDetails
+    // const setDetails=props.setDetails
     const pages=props.pages
     const setPages=props.setPages
     const [loading, setLoading] = React.useState(true)
@@ -51,15 +51,16 @@ const App =(props) => {
     //const [details, setDetails] =React.useState([])
 
   //APIの導入
-　const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=${pages}`;
+  const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=${pages}`;
+  // const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/discover/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pages}`
     
     useEffect(() => {
       fetch(MOVIE_POPULAR_URL)
           .then(res => res.json())
           .then(res => { //responseでも可能(任意) json→連想配列
               setMovies(res.results)
-              setDetails(res.genres)
-              setPages(res.page)
+              // setDetails(res.genres)
+              // setPages(res.page)
               setLoading(false)
 
           });
@@ -68,22 +69,7 @@ const App =(props) => {
   
 
   
-          //map関数の引数をreturnしてあげる必要がある
-              //配列  　　　//配列 //配列(movies)に用意されたメソッド(あらかじめ用意された関数)　//movie=連想配列(要素)
-              //メソッドは作ることもできる
-              const moviecards=props.movies.map((movie, id) =>{
-                return (
-                   <List setId={props.setId} id={id} movie={movie} movies={props.movies}/>
-                )
-                })
-    
-              /*
-              const moviecards= [<List key={`${id}-{res.results[0].title}`} movie={movie} />
-                                 , <List key={`${id}-{res.results[1].title}`} movie={movie} />
-                                 ,<List key={`${id}-{res.results[2].title}`} movie={movie} />
-                                ・・・・・・]
-                */
-
+        
     //配列・連想配列・変数・関数→別々の呼び出し方
   
 
@@ -96,7 +82,7 @@ const App =(props) => {
 
       // fetch(`https://api.themoviedb.org/3/search/person?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
      //fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
-     fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=${pages}&include_adult=false`)
+     fetch(`https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=${pages}&include_adult=false`)
 
           
         .then(res => res.json())
@@ -104,6 +90,8 @@ const App =(props) => {
             if (res !== null) {
               setLoading(false)
               setMovies(res.results)
+              // setDetails(res.genres)
+              setPages(res.page)
             } else { //検索失敗
               setErrorMessage(true)
               setLoading(false)
@@ -122,6 +110,23 @@ const App =(props) => {
         //     }
         // })
     }
+
+      //map関数の引数をreturnしてあげる必要がある
+              //配列  　　　//配列 //配列(movies)に用意されたメソッド(あらかじめ用意された関数)　//movie=連想配列(要素)
+              //メソッドは作ることもできる
+              const moviecards=props.movies.map((movie, id) =>{
+                return (
+                   <List setId={props.setId} id={id} movie={movie} movies={props.movies}/>
+                )
+                })
+    
+              /*
+              const moviecards= [<List key={`${id}-{res.results[0].title}`} movie={movie} />
+                                 , <List key={`${id}-{res.results[1].title}`} movie={movie} />
+                                 ,<List key={`${id}-{res.results[2].title}`} movie={movie} />
+                                ・・・・・・]
+                */
+
 
   return (
     
@@ -144,7 +149,7 @@ const App =(props) => {
           </Ul>
         )} 
       </div>
-        <PageContoroll pages={props.pages}></PageContoroll> 
+        {/* <PageContoroll pages={props.pages}></PageContoroll>  */}
     </Div>
     
   )

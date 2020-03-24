@@ -44,7 +44,7 @@ const Router =() =>{
                <Route path='/list' render={() => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
           </ul>
           <Route path='/upcoming' render={() => <UpComing  movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
-          <Route path='/favorite' render={()=><Favorite favoritecards={favoritecards} avorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
+          <Route exact path='/favorite' render={()=><Favorite favoritecards={favoritecards} avorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
           <ul>
                <Route path='/favoritelist' render={()=> <FavoriteList  favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route>
           </ul>
