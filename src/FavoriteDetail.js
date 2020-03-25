@@ -70,21 +70,21 @@ cursor: pointer;
 
 `
 
-const imgUrl = "https://image.tmdb.org/t/p/w1280/";
+const imgUrlF = "https://image.tmdb.org/t/p/w1280/";
 
 //const DEFAULT_IMG ="https://image.tmdb.org/t/p/w185/3L05HQS4GiR8PXCq0JjqXShoLRF.jpg"
 //No Image用の画像
 
-const Detail =(props) => {
+const FavoriteDetail =(props) => {
     //img→検索結果を表示
     //const poster =
      //props.img === "N/A" ? DEFAULT_IMG : props.img;
     const rating = () => {
-        if (props.movies[props.id].vote_average !== 0) {
+        if (props.favorites[props.id].vote_average !== 0) {
             return (
                 <div>
                     <StyledStarRoundedIcon />
-                    {props.movies[props.id].vote_average}
+                    {props.favorites[props.id].vote_average}
                 </div>
             )
         }
@@ -94,10 +94,6 @@ const Detail =(props) => {
         //e.preventDefault()
         props.setId(props.id)
     }
-
-
-    const favorites=props.favorites
-
 
     const[isAdd, setIsAdd]=React.useState(false)
     const handleIsFavorite =(e)=>{
@@ -143,11 +139,13 @@ const Detail =(props) => {
      
     }
 
+   
+
     const theme = useTheme();
     const isPC=useMediaQuery(theme.breakpoints.up('sm'));
 
     const poster =
-    props.movies[props.id].backdrop_path === "N/A" ? NO_IMG : detailImgUrl+props.movies[props.id].backdrop_path
+    props.favorites[props.id].backdrop_path === "N/A" ? NO_IMG : detailImgUrl+props.favorites[props.id].backdrop_path
 
     // const isTAB=useMediaQuery({
     //     query: "(max-width: 1024px)"
@@ -155,7 +153,7 @@ const Detail =(props) => {
 
     let genresArray =props.details.map(item=>item.name)
 
-    let str=props.movies[props.id].release_date;
+    let str=props.favorites[props.id].release_date;
     let releaseDate=str.split('-').join('/');
 
     
@@ -172,11 +170,11 @@ const Detail =(props) => {
                 src={poster}
             />
             <Div2>
-                <h1>{props.movies[props.id].title}</h1> 
+                <h1>{props.favorites[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
                 <h3>ジャンル{genresArray.join(" , ")}</h3>
-                <p>{props.movies[props.id].overview}</p>
+                <p>{props.favorites[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{releaseDate}</p>
                 <h3>上映時間</h3>
@@ -201,14 +199,14 @@ const Detail =(props) => {
         ) : ( //PC版
             <DivSP>
                 <Img 
-                    src={imgUrl+props.movies[props.id].backdrop_path}
+                    src={imgUrlF+props.favorites[props.id].backdrop_path}
                 />
                 <Div3 className="childContainer">
-                    <h1>{props.movies[props.id].title}</h1> 
+                    <h1>{props.favorites[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
                     <h3>ジャンル{genresArray.join(" , ")}</h3>
-                    <p>{props.movies[props.id].overview}</p>
+                    <p>{props.favorites[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{releaseDate}</p>
                     <h3>上映時間</h3>
@@ -237,5 +235,5 @@ const Detail =(props) => {
 
 
 
-export default Detail
+export default FavoriteDetail
 //export default withRouter(connect(mapStateToProps, map)(List))

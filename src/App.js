@@ -9,7 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
   import styled from "styled-components"
 
 　//APIの導入
-// 　const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=${props.pages}`;
+// const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=${props.pages}`;
   //const MOVIE_UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=1";
   
 //➁コンポーネント
@@ -70,7 +70,7 @@ const App =(props) => {
           .then(res => {
             setDetails(res.genres)
           })
-  }, );
+  },[] );
   
 
   
@@ -103,23 +103,23 @@ const App =(props) => {
             }
         })
 
-        fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US")
-        // fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id]}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
-        .then(res => res.json())
-        .then(res => { //検索成功
-            if (res != null) {
-              setLoading(false)
-              setPages(res.page)
-            } else { //検索失敗
-              setErrorMessage(true)
-              setLoading(false)
-            }
-        })
-        fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US") 
-        .then(res => res.json())
-        .then(res => {
-          setDetails(res.genres)
-        })
+        // fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US")
+        // // fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id]}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
+        // .then(res => res.json())
+        // .then(res => { //検索成功
+        //     if (res != null) {
+        //       setLoading(false)
+        //       setPages(res.page)
+        //     } else { //検索失敗
+        //       setErrorMessage(true)
+        //       setLoading(false)
+        //     }
+        // })
+        // fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US") 
+        // .then(res => res.json())
+        // .then(res => {
+        //   setDetails(res.genres)
+        // })
     }
 
       //map関数の引数をreturnしてあげる必要がある
@@ -127,7 +127,7 @@ const App =(props) => {
               //メソッドは作ることもできる
               const moviecards=props.movies.map((movie, id) =>{
                 return (
-                   <List setId={props.setId} id={id} movie={movie} movies={props.movies}/>
+                   <List details={props.details} setId={props.setId} id={id} movie={movie} movies={props.movies}/>
                 )
                 })
     

@@ -1,5 +1,5 @@
 //➀インポート
-import React from "react"
+import React, {useEffect} from "react"
 import PageContoroll from "./PageContoroll";
 
   //styled-componentsをインポート
@@ -43,7 +43,7 @@ const Favorite =(props) => {
             
   //         });
          
-  // });
+  // }, []);
   
 
   

@@ -103,7 +103,7 @@ const FavoriteList =(props) => {
       <Div style={{margin:'auto'}} className="movie"> 
               {/* <h2>{genresArray().join(" , ")}</h2>   */}
               {rating()}
-              <Link onClick={(e)=>{handleId()}} to='/detail'>
+              <Link onClick={(e)=>{handleId()}} to='/favoritedetail'>
                 <Img 
                   src={posterf}
                 />

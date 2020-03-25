@@ -7,6 +7,7 @@ import List from "./List"
 import FavoriteList from "./FavoriteList"
 import UpComing from "./UpComing"
 import Favorite from "./Favorite"
+import FavoriteDetail from "./FavoriteDetail"
 
 import styled from "styled-components"
 import PageContoroll from "./PageContoroll";
@@ -38,17 +39,18 @@ const Router =() =>{
     <Div>
        <BrowserRouter>
           <Header id={id} setId={setId}></Header>
-          <Route exact path='/' render={() => <App pages={pages} setPages={setPages} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}></Route>
-          <Route path='/detail' render={() => <Detail newFavorites={newFavorites} movies={movies} details={details} id={id} setId={setId} favorites={favorites} setFavorites={setFavorites}></Detail>}></Route>
+          <Route exaxt path='/' render={(props) => <App pages={pages} setPages={setPages} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}></Route>
+          <Route path='/detail' render={(props) => <Detail newFavorites={newFavorites} movies={movies} details={details} id={id} setId={setId} favorites={favorites} setFavorites={setFavorites}></Detail>}></Route>
           <ul>
-               <Route path='/list' render={() => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
+          <Route path='/list' render={(props) => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
           </ul>
-          <Route path='/upcoming' render={() => <UpComing  movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
-          <Route exact path='/favorite' render={()=><Favorite favoritecards={favoritecards} avorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
+          <Route path='/upcoming' render={(props) => <UpComing  movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
+          <Route path='/favorite' render={(props)=><Favorite favoritecards={favoritecards} favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
           <ul>
-               <Route path='/favoritelist' render={()=> <FavoriteList  favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route>
+               <Route path='/favoritelist' render={(props)=> <FavoriteList  favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route>
           </ul>
-          <PageContoroll pages={pages} setPages={setPages}></PageContoroll>
+          <Route path='/favoritedetail' render={(props) => <FavoriteDetail favorites={favorites} id={id}></FavoriteDetail>}></Route>
+          /* <PageContoroll pages={pages} setPages={setPages}></PageContoroll> */
           </BrowserRouter>
          
     </Div>
