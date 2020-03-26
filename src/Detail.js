@@ -161,55 +161,54 @@ const Detail =(props) => {
 
     let genreState 
     let genreArray
-    // const genreNames=genreArray.map(genreState=>genreState)
     
-    // const genreIds=props.movies[props.id].genre_ids
-    // let genresArray =genreIds.map(item=>item.genreState)
-    // if (genreIds.match(/=28/)) {
-    //     genreState="Action"
-    //     } else if (genreIds.match(/=12/)) {
-    //         genreState="Adventure"
-    //     } else if (genreIds.match(/=16/)) {
-    //         genreState="Animation"
-    //     } else if (genreIds.match(/=35/)) {
-    //         genreState="Comedy"
-    //     } else if (genreIds.match(/=80/)) {
-    //         genreState="Crime"
-    //     } else if (genreIds.match(/=99/)) {
-    //         genreState="Documentary"
-    //     } else if (genreIds.match(/=18/)) {
-    //         genreState="Drama"
-    //     } else if (genreIds.match(/=10751/)) {
-    //         genreState="Family"
-    //     } else if (genreIds.match(/=14/)) {
-    //         genreState="Fantasy"
-    //     } else if (genreIds.match(/=36/)) {
-    //         genreState="History"
-    //     } else if (genreIds.match(/=27/)) {
-    //         genreState="Horror"
-    //     } else if (genreIds.match(/=10402/)) {
-    //         genreState="Music"
-    //     } else if (genreIds.match(/=9648/)) {
-    //         genreState="Mystery"
-    //     } else if (genreIds.match(/=10749/)) {
-    //         genreState="Romance"
-    //     } else if (genreIds.match(/=878/)) {
-    //         genreState="10770"
-    //     } else if (genreIds.match(/=53/)) {
-    //         genreState="Thriller"
-    //     } else if (genreIds.match(/=10752/)) {
-    //         genreState="War"
-    //     } else if (genreIds.match(/=37/)) {
-    //         genreState="Westwern"
-    //     } else {
-    //         genreState="No genre"
-    //     }
+    
+    const genreIds=props.movies[props.id].genre_ids
+    // let genreArray =genreNames.map(genreState=>genreState)
+    const genreNames=genreArray.map(item=>item.genreState)
+    if (genreIds.match(/=28/)) {
+        genreState="Action"
+        } else if (genreIds.match(/=12/)) {
+            genreState="Adventure"
+        } else if (genreIds.match(/=16/)) {
+            genreState="Animation"
+        } else if (genreIds.match(/=35/)) {
+            genreState="Comedy"
+        } else if (genreIds.match(/=80/)) {
+            genreState="Crime"
+        } else if (genreIds.match(/=99/)) {
+            genreState="Documentary"
+        } else if (genreIds.match(/=18/)) {
+            genreState="Drama"
+        } else if (genreIds.match(/=10751/)) {
+            genreState="Family"
+        } else if (genreIds.match(/=14/)) {
+            genreState="Fantasy"
+        } else if (genreIds.match(/=36/)) {
+            genreState="History"
+        } else if (genreIds.match(/=27/)) {
+            genreState="Horror"
+        } else if (genreIds.match(/=10402/)) {
+            genreState="Music"
+        } else if (genreIds.match(/=9648/)) {
+            genreState="Mystery"
+        } else if (genreIds.match(/=10749/)) {
+            genreState="Romance"
+        } else if (genreIds.match(/=878/)) {
+            genreState="10770"
+        } else if (genreIds.match(/=53/)) {
+            genreState="Thriller"
+        } else if (genreIds.match(/=10752/)) {
+            genreState="War"
+        } else if (genreIds.match(/=37/)) {
+            genreState="Westwern"
+        } else {
+            genreState="No genre"
+        }
     
 
 
 
-    // let genreNames 
-    // const genreArray=genreNames.map(genreState)
 
     
 
@@ -228,7 +227,7 @@ const Detail =(props) => {
                 <h1>{props.movies[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                {/* <h3>ジャンル{genreArray.join(" , ")}</h3> */}
+                <h3>ジャンル{genreNames.join(" , ")}</h3>
                 <p>{props.movies[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{releaseDate}</p>
@@ -260,7 +259,7 @@ const Detail =(props) => {
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    {/* <h3>ジャンル{genreArray.join(" , ")}</h3> */}
+                    <h3>ジャンル{genreNames.join(" , ")}</h3>
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{releaseDate}</p>
