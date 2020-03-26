@@ -67,25 +67,25 @@ const StyledTitle=styled.p`
 const FavoriteList =(props) => {
     //img→検索結果を表示
     const posterf =
-    props.favorites[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.favorites[props.id].poster_path
+    props.movies[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].poster_path
     //  props.movies[props.id].poster_path === "N/A" ? NO_IMG : imgUrl+props.movies[props.id].poster_path
 
     // let genresArray = props.movies[props.id].genres.map(item => item.name);
 
      const rating = () => {
-        if (props.favorites[props.id].vote_average !== 0) {
+        if (props.movies[props.id].vote_average !== 0) {
           return (
             <StyledRating>
               <StyledStarRoundedIcon />
-              {props.favorites[props.id].vote_average}
+              {props.movies[props.id].vote_average}
             </StyledRating>
           );
         }
       };
       const title =() =>{
-          if (props.favorites[props.id].title != null) {
+          if (props.movies[props.id].title != null) {
               return (
-                <StyledTitle>{props.favorites[props.id].title}</StyledTitle> 
+                <StyledTitle>{props.movies[props.id].title}</StyledTitle> 
               )
           }
       }

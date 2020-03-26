@@ -152,8 +152,10 @@ const App =(props) => {
         {loading && !errorMessage ? ( //loading=true/errorMessage=falseの場合
           // <span>loading...</span>
           <CircularProgress color="secondary" />
-        ): errorMessage ? (
-          <h3 className="errorMessage">検索結果 なし</h3>
+        ): !loading && errorMessage ? (
+          <ul>
+              <h3 className="errorMessage">検索結果 なし</h3>
+          </ul>
         ): (
           <Ul>
             {moviecards}
