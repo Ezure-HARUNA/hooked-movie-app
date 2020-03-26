@@ -159,57 +159,57 @@ const Detail =(props) => {
     let str=props.movies[props.id].release_date;
     let releaseDate=str.split('-').join('/');
 
-    let genreState 
-    let genreArray
+    // let genreState 
+    // const [genreArray, setGenreArray] =React.useState([])
     
     
-    const genreIds=props.movies[props.id].genre_ids
+     const genreIds=props.movies[props.id].genre_ids.join(", ")
     // let genreArray =genreNames.map(genreState=>genreState)
-    const genreNames=genreArray.map(item=>item.genreState)
+
+    const [genreArray, setGenreArray] =React.useState([])
+    let newGenre=props.movies[props.id].genre_ids.slice()
+    // const genreNames=genreArray.map(item=>item.genreState)
     if (genreIds.match(/=28/)) {
-        genreState="Action"
+        newGenre.push("Action")
         } else if (genreIds.match(/=12/)) {
-            genreState="Adventure"
+            newGenre.push("Adventure")
         } else if (genreIds.match(/=16/)) {
-            genreState="Animation"
+            newGenre.push("Animation")
         } else if (genreIds.match(/=35/)) {
-            genreState="Comedy"
+            newGenre.push("Comedy")
         } else if (genreIds.match(/=80/)) {
-            genreState="Crime"
+            newGenre.push("Crime")
         } else if (genreIds.match(/=99/)) {
-            genreState="Documentary"
+            newGenre.push("Documentary")
         } else if (genreIds.match(/=18/)) {
-            genreState="Drama"
+            newGenre.push("Drama")
         } else if (genreIds.match(/=10751/)) {
-            genreState="Family"
+            newGenre.push("Family")
         } else if (genreIds.match(/=14/)) {
-            genreState="Fantasy"
+            newGenre.push("Fantasy")
         } else if (genreIds.match(/=36/)) {
-            genreState="History"
+            newGenre.push("History")
         } else if (genreIds.match(/=27/)) {
-            genreState="Horror"
+            newGenre.push("Horror")
         } else if (genreIds.match(/=10402/)) {
-            genreState="Music"
+            newGenre.push("History")
         } else if (genreIds.match(/=9648/)) {
-            genreState="Mystery"
+            newGenre.push("Mistery")
         } else if (genreIds.match(/=10749/)) {
-            genreState="Romance"
+            newGenre.push("Romance")
         } else if (genreIds.match(/=878/)) {
-            genreState="10770"
+           newGenre.push("Science Fiction")
         } else if (genreIds.match(/=53/)) {
-            genreState="Thriller"
+            newGenre.push("Thriller")
         } else if (genreIds.match(/=10752/)) {
-            genreState="War"
+            newGenre.push("War")
         } else if (genreIds.match(/=37/)) {
-            genreState="Westwern"
+            newGenre.push("Westwern")
         } else {
-            genreState="No genre"
+            newGenre.push("No genre")
         }
+        setGenreArray(newGenre)
     
-
-
-
-
     
 
     // const { urlKey } = props;
@@ -227,7 +227,7 @@ const Detail =(props) => {
                 <h1>{props.movies[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                <h3>ジャンル{genreNames.join(" , ")}</h3>
+                <h3>ジャンル{genreArray}</h3>
                 <p>{props.movies[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{releaseDate}</p>
@@ -259,7 +259,7 @@ const Detail =(props) => {
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    <h3>ジャンル{genreNames.join(" , ")}</h3>
+                    <h3>ジャンル{genreArray}</h3>
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{releaseDate}</p>
