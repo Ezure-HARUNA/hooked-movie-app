@@ -119,7 +119,7 @@ const Favorite =(props) => {
           ) : (
             <h2>お気に入りを追加してね</h2>
           )}
-        <PageContoroll></PageContoroll> 
+        {/* <PageContoroll></PageContoroll>  */}
     </Div>
     
   )

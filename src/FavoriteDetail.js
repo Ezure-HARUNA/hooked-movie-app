@@ -151,10 +151,10 @@ const FavoriteDetail =(props) => {
     //     query: "(max-width: 1024px)"
     // })
 
-    let genresArray =props.details.map(item=>item.name)
+    // let genresArray =props.details.map(item=>item.name)
 
-    let str=props.favorites[props.id].release_date;
-    let releaseDate=str.split('-').join('/');
+    let strf=props.favorites[props.id].release_date;
+    let releaseDatef=strf.split('-').join('/');
 
     
 
@@ -173,10 +173,10 @@ const FavoriteDetail =(props) => {
                 <h1>{props.favorites[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                <h3>ジャンル{genresArray.join(" , ")}</h3>
+                {/* <h3>ジャンル{genresArray.join(" , ")}</h3> */}
                 <p>{props.favorites[props.id].overview}</p>
                 <h3>Release Date</h3>
-                <p>{releaseDate}</p>
+                <p>{releaseDatef}</p>
                 <h3>上映時間</h3>
                 {/* <p>{props.details.runtime}分</p> */}
 
@@ -205,10 +205,10 @@ const FavoriteDetail =(props) => {
                     <h1>{props.favorites[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    <h3>ジャンル{genresArray.join(" , ")}</h3>
+                    {/* <h3>ジャンル{genresArray.join(" , ")}</h3> */}
                     <p>{props.favorites[props.id].overview}</p>
                     <h3>Release Date</h3>
-                    <p>{releaseDate}</p>
+                    <p>{releaseDatef}</p>
                     <h3>上映時間</h3>
                     {/* <p>{props.details.runtime}分</p> */}
 

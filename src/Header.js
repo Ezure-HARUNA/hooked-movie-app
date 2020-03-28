@@ -20,6 +20,10 @@ import AddIcon from '@material-ui/icons/Add';
 import { blue } from '@material-ui/core/colors';
 
 
+const Div=styled.div`
+  /* position: fixed; */
+`
+
 //ログイン
 const names = ['Haruna Ezure', 'Guest'];
 const useStyles = makeStyles({
@@ -148,7 +152,7 @@ const Header =(props) =>{
 
     //➂レンダリング
     return (
-        <div className={classes.root}>
+        <Div className={classes.root}>
             <StyledAppBar position="static" color="primary" >
                 <Toolbar>
                     <Test id={props.id} setId={props.setId}></Test>
@@ -161,7 +165,7 @@ const Header =(props) =>{
                 </Toolbar>
             </StyledAppBar>
             
-        </div>
+        </Div>
         
       
     )

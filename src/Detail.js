@@ -125,6 +125,7 @@ const Detail =(props) => {
                  
             // If no favorites exist, clone the movie and copy into newFavorites.
             let newFavorites = props.favorites.slice();
+            let moviesClone = JSON.parse(JSON.stringify(props.movies));
 
             //取り出した値の追加
             //let deepClone = JSON.parse(JSON.stringify(props.movies));
@@ -159,56 +160,58 @@ const Detail =(props) => {
     let str=props.movies[props.id].release_date;
     let releaseDate=str.split('-').join('/');
 
+//ジャンルの処理
+
     // let genreState 
     // const [genreArray, setGenreArray] =React.useState([])
     
     
-     const genreIds=props.movies[props.id].genre_ids.join(", ")
-    // let genreArray =genreNames.map(genreState=>genreState)
+    //  const genreIds=props.movies[props.id].genre_ids.join(", ")
+    // // let genreArray =genreNames.map(genreState=>genreState)
 
-    const [genreArray, setGenreArray] =React.useState([])
-    let newGenre=props.movies[props.id].genre_ids.slice()
-    // const genreNames=genreArray.map(item=>item.genreState)
-    if (genreIds.match(/=28/)) {
-        newGenre.push("Action")
-        } else if (genreIds.match(/=12/)) {
-            newGenre.push("Adventure")
-        } else if (genreIds.match(/=16/)) {
-            newGenre.push("Animation")
-        } else if (genreIds.match(/=35/)) {
-            newGenre.push("Comedy")
-        } else if (genreIds.match(/=80/)) {
-            newGenre.push("Crime")
-        } else if (genreIds.match(/=99/)) {
-            newGenre.push("Documentary")
-        } else if (genreIds.match(/=18/)) {
-            newGenre.push("Drama")
-        } else if (genreIds.match(/=10751/)) {
-            newGenre.push("Family")
-        } else if (genreIds.match(/=14/)) {
-            newGenre.push("Fantasy")
-        } else if (genreIds.match(/=36/)) {
-            newGenre.push("History")
-        } else if (genreIds.match(/=27/)) {
-            newGenre.push("Horror")
-        } else if (genreIds.match(/=10402/)) {
-            newGenre.push("History")
-        } else if (genreIds.match(/=9648/)) {
-            newGenre.push("Mistery")
-        } else if (genreIds.match(/=10749/)) {
-            newGenre.push("Romance")
-        } else if (genreIds.match(/=878/)) {
-           newGenre.push("Science Fiction")
-        } else if (genreIds.match(/=53/)) {
-            newGenre.push("Thriller")
-        } else if (genreIds.match(/=10752/)) {
-            newGenre.push("War")
-        } else if (genreIds.match(/=37/)) {
-            newGenre.push("Westwern")
-        } else {
-            newGenre.push("No genre")
-        }
-        setGenreArray(newGenre)
+    // const [genreArray, setGenreArray] =React.useState([])
+    // let newGenre=props.movies[props.id].genre_ids.slice()
+    // // const genreNames=genreArray.map(item=>item.genreState)
+    // if (genreIds.match(/=28/)) {
+    //     newGenre.push("Action")
+    //     } else if (genreIds.match(/=12/)) {
+    //         newGenre.push("Adventure")
+    //     } else if (genreIds.match(/=16/)) {
+    //         newGenre.push("Animation")
+    //     } else if (genreIds.match(/=35/)) {
+    //         newGenre.push("Comedy")
+    //     } else if (genreIds.match(/=80/)) {
+    //         newGenre.push("Crime")
+    //     } else if (genreIds.match(/=99/)) {
+    //         newGenre.push("Documentary")
+    //     } else if (genreIds.match(/=18/)) {
+    //         newGenre.push("Drama")
+    //     } else if (genreIds.match(/=10751/)) {
+    //         newGenre.push("Family")
+    //     } else if (genreIds.match(/=14/)) {
+    //         newGenre.push("Fantasy")
+    //     } else if (genreIds.match(/=36/)) {
+    //         newGenre.push("History")
+    //     } else if (genreIds.match(/=27/)) {
+    //         newGenre.push("Horror")
+    //     } else if (genreIds.match(/=10402/)) {
+    //         newGenre.push("History")
+    //     } else if (genreIds.match(/=9648/)) {
+    //         newGenre.push("Mistery")
+    //     } else if (genreIds.match(/=10749/)) {
+    //         newGenre.push("Romance")
+    //     } else if (genreIds.match(/=878/)) {
+    //        newGenre.push("Science Fiction")
+    //     } else if (genreIds.match(/=53/)) {
+    //         newGenre.push("Thriller")
+    //     } else if (genreIds.match(/=10752/)) {
+    //         newGenre.push("War")
+    //     } else if (genreIds.match(/=37/)) {
+    //         newGenre.push("Westwern")
+    //     } else {
+    //         newGenre.push("No genre")
+    //     }
+    //     setGenreArray(newGenre)
     
     
 
@@ -227,7 +230,7 @@ const Detail =(props) => {
                 <h1>{props.movies[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                <h3>ジャンル{genreArray}</h3>
+                {/* <h3>ジャンル{genreArray}</h3> */}
                 <p>{props.movies[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{releaseDate}</p>
@@ -259,7 +262,7 @@ const Detail =(props) => {
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    <h3>ジャンル{genreArray}</h3>
+                    {/* <h3>ジャンル{genreArray}</h3> */}
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{releaseDate}</p>

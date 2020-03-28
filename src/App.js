@@ -41,67 +41,67 @@ const Ul =styled.ul`
 
 const App =(props) => {
   
-    const setMovies=props.setMovies
-    const setDetails=props.setDetails
-    const pages=props.pages
-    const setPages=props.setPages
-    const [loading, setLoading] = React.useState(true)
-    // const [movies, setMovies] = React.useState([])
-    const [errorMessage, setErrorMessage] = React.useState(null)
-    //const [details, setDetails] =React.useState([])
+    // const setMovies=props.setMovies
+    // const setDetails=props.setDetails
+    // const pages=props.pages
+    // const setPages=props.setPages
+    // const [loading, setLoading] = React.useState(true)
+    // // const [movies, setMovies] = React.useState([])
+    // const [errorMessage, setErrorMessage] = React.useState(null)
+    // //const [details, setDetails] =React.useState([])
 
-  //APIの導入
-  const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=${pages}`;
-  // const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/discover/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pages}`
+  // //APIの導入
+  // const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=${pages}`;
+  // // const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/discover/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pages}`
     
-    useEffect(() => {
-      fetch(MOVIE_POPULAR_URL)
-          .then(res => res.json())
-          .then(res => { //responseでも可能(任意) json→連想配列
-              setMovies(res.results)
-              // setDetails(res.genres)
-              // setPages(res.page)
-              setLoading(false)
+  //   useEffect(() => {
+  //     fetch(MOVIE_POPULAR_URL)
+  //         .then(res => res.json())
+  //         .then(res => { //responseでも可能(任意) json→連想配列
+  //             setMovies(res.results)
+  //             // setDetails(res.genres)
+  //             // setPages(res.page)
+  //             setLoading(false)
 
-          });
+  //         });
 
-      fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US") 
-          .then(res => res.json())
-          .then(res => {
-            setDetails(res.genres)
-          })
-  },[] );
+  //     fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US") 
+  //         .then(res => res.json())
+  //         .then(res => {
+  //           setDetails(res.genres)
+  //         })
+  // },[] );
   
 
   
         
-    //配列・連想配列・変数・関数→別々の呼び出し方
+  //   //配列・連想配列・変数・関数→別々の呼び出し方
   
 
-    //検索の分岐別の処理
-    //useEffect
-    const search = searchValue => {
-      //検索中
-      setLoading(true)
-      setErrorMessage(null)
+  //   //検索の分岐別の処理
+  //   //useEffect
+  //   const search = searchValue => {
+  //     //検索中
+  //     setLoading(true)
+  //     setErrorMessage(null)
 
-      // fetch(`https://api.themoviedb.org/3/search/person?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
-     //fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
-     fetch(`https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=${pages}&include_adult=false`)
+  //     // fetch(`https://api.themoviedb.org/3/search/person?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
+  //    //fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
+  //    fetch(`https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=${pages}&include_adult=false`)
 
           
-        .then(res => res.json())
-        .then(res => { //検索成功
-            if (res !== null) {
-              setLoading(false)
-              setMovies(res.results)
-              // setDetails(res.genres)
-              setPages(res.page)
-            } else { //検索失敗
-              setErrorMessage(true)
-              setLoading(false)
-            }
-        })
+  //       .then(res => res.json())
+  //       .then(res => { //検索成功
+  //           if (res !== null) {
+  //             setLoading(false)
+  //             setMovies(res.results)
+  //             // setDetails(res.genres)
+  //             setPages(res.page)
+  //           } else { //検索失敗
+  //             setErrorMessage(true)
+  //             setLoading(false)
+  //           }
+  //       })
 
         // fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US")
         // // fetch( `https://api.themoviedb.org/3/movie/${props.movies[props.id]}?api_key=62df1d74f3375f28b7946846b540b1b9&&language=en-US&append_to_response=videos,images&include_image_language=en,null`)
@@ -120,7 +120,7 @@ const App =(props) => {
         // .then(res => {
         //   setDetails(res.genres)
         // })
-    }
+    // }
 
       //map関数の引数をreturnしてあげる必要がある
               //配列  　　　//配列 //配列(movies)に用意されたメソッド(あらかじめ用意された関数)　//movie=連想配列(要素)
@@ -144,15 +144,15 @@ const App =(props) => {
     <Div>
        
      
-      <Search search={search}></Search>
+      <Search search={props.search}></Search>
       {/* <img src="https://image.tmdb.org/t/p/w185/3L05HQS4GiR8PXCq0JjqXShoLRF.jpg" alt=""/> */}
       {/* 分岐ごとの表示 */}
       <div className="moviesList">
         
-        {loading && !errorMessage ? ( //loading=true/errorMessage=falseの場合
+        {props.loading && !props.errorMessage ? ( //loading=true/errorMessage=falseの場合
           // <span>loading...</span>
           <CircularProgress color="secondary" />
-        ): !loading && errorMessage ? (
+        ): !props.loading && props.errorMessage ? (
           <ul>
               <h3 className="errorMessage">検索結果 なし</h3>
           </ul>
