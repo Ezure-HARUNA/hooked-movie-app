@@ -12,6 +12,7 @@ import PageContoroll from "./PageContoroll";
 //➁コンポーネント
 
 const Div = styled.div `
+padding-top: 80px!important;
 min-height:100vh;
 width:100vw;
 background-color: #282A3A;

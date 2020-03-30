@@ -1,5 +1,5 @@
 //➀インポート
-import React, {useEffect} from "react"
+import React from "react"
 import Search from "./Search"
 import List from "./List"
 // import PageContoroll from "./PageContoroll";

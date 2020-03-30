@@ -9,10 +9,6 @@ import React from "react"
     import InputBase from '@material-ui/core/InputBase';
    
 
-   
-
-//➁コンポーネント
-//検索フォームの背景変える(AppleBarの検索バーみたいにしたい)
 
 const Form =styled.form`
  color: white;
@@ -20,7 +16,7 @@ const Form =styled.form`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 10px;
+    padding-top: 70px;
 }
 input[type="text"] [
     background-color: white;

@@ -50,6 +50,8 @@ const Router =() =>{
           .then(res => {
             setDetails(res.genres)
           })
+
+  
   },[] );
   
 
@@ -85,14 +87,66 @@ const Router =() =>{
 
       }
 
+
+    
     
 
 
    const favoritecards=favorites.map((favorite, id) =>{
       return (
-         <FavoriteList setId={setId} id={id} favorite={favorite} favorites={favorites}/>
+         <FavoriteList setId={setId} id={id} favorite={favorite} favorites={favorites} setFavorites={setFavorites}/>
       )
    })
+ 
+//!
+
+
+    const[isAdd, setIsAdd]=React.useState(false)
+    const handleIsFavorite =(e)=>{
+        e.preventDefault()
+
+
+        if (isAdd) {
+            setIsAdd(false)
+            // props.movies(e.target.props.movies.value)
+            // If no favorites exist, clone the movie and copy into newFavorites.
+            const removeFavorites = favorites.slice();
+            
+            //取り出した値の追加
+            //let deepClone = JSON.parse(JSON.stringify(props.movies));
+            removeFavorites.splice(id, 1)
+  
+            //favoritesの再定義
+            setFavorites(removeFavorites)
+  
+          //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
+        } else {
+            setIsAdd(true)
+            //➁追加の処理
+            // props.movies=e.target.props.movies.value
+                 
+            // If no favorites exist, clone the movie and copy into newFavorites.
+            let newFavorites = favorites.slice();
+            let moviesClone = JSON.parse(JSON.stringify(movies));
+
+            //取り出した値の追加
+            //let deepClone = JSON.parse(JSON.stringify(props.movies));
+            newFavorites.push(moviesClone)
+
+            //favoritesの再定義
+            setFavorites(newFavorites)
+            }
+
+    } 
+    
+    let isAddState
+        if (isAdd) {
+           isAddState="削除"
+    
+        } else {
+        　 isAddState="追加"
+     
+    }
 
    
 
@@ -100,18 +154,19 @@ const Router =() =>{
     <Div>
        <BrowserRouter>
           <Header id={id} setId={setId}></Header>
-          <Route exact path='/' render={(props) => <App loading={loading} errorMessage={errorMessage} pages={pages} setPages={setPages} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}></Route>
-          <Route path='/detail' render={(props) => <Detail newFavorites={newFavorites} movies={movies} details={details} id={id} setId={setId} favorites={favorites} setFavorites={setFavorites}></Detail>}></Route>
+          {/* <App search={search} loading={loading} errorMessage={errorMessage} pages={pages} setPages={setPages} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}> */}
+          <Route exact path='/app' render={(props) => <App search={search} loading={loading} errorMessage={errorMessage} pages={pages} setPages={setPages} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}></Route>
+          <Route exact path='/detail' render={(props) => <Detail handleIsFavorite={handleIsFavorite} isAddState={isAddState} newFavorites={newFavorites} movies={movies} details={details} id={id} setId={setId} favorites={favorites} setFavorites={setFavorites}></Detail>}></Route>
           <ul>
-          <Route path='/list' render={(props) => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
+          <Route exact path='/list' render={(props) => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
           </ul>
-          <Route path='/upcoming' render={(props) => <UpComing  movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
-          <Route path='/favorite' render={(props)=><Favorite favoritecards={favoritecards} favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
+          <Route exact path='/upcoming' render={(props) => <UpComing  movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
+          <Route exact path='/favorite' render={(props)=><Favorite favoritecards={favoritecards} favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
           <ul>
-               <Route path='/favoritelist' render={(props)=> <FavoriteList  favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route>
+               <Route exact path='/favoritelist' render={(props)=> <FavoriteList  favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route>
           </ul>
-          <Route path='/favoritedetail' render={(props) => <FavoriteDetail favorites={favorites} id={id}></FavoriteDetail>}></Route>
-          /* <PageContoroll pages={pages} setPages={setPages}></PageContoroll> */
+          <Route exact path='/favoritedetail' render={(props) => <FavoriteDetail favorites={favorites} id={id}></FavoriteDetail>}></Route>
+          <Route exact path="pagecontoroll" render={(props) => <PageContoroll pages={pages} setPages={setPages}></PageContoroll>}></Route>
           </BrowserRouter>
          
     </Div>

@@ -10,12 +10,20 @@ import { useTheme } from '@material-ui/core/styles';
 import NO_IMG from "./img/noImage.png"
 
 
-
-const detailImgUrl = "https://image.tmdb.org/t/p/w1280/";
-
 const Img =styled.img`
-width:100%;
-height:100%;
+/* width: 470px!important; */
+/* height: 720px!important; */
+background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.05) 35%,
+      rgba(44, 57, 73, 0.8) 55%,
+      rgba(44, 57, 73, 1) 70%
+    )!important;
+`
+const Img2=styled.img`
+    width: 100%;
+    height: 100%;
 `
 
 const Div=styled.div`
@@ -26,9 +34,12 @@ const Div=styled.div`
    margin-top: 10px!important;
    color: white;
    overflow: hidden!important;
+   display: flex;
+   
 `
 const Div2=styled.div`
     padding: 0 3%!important;
+    margin-top: 100px!important;
 `
 const Div3=styled.div`
     padding: 0 3%;`
@@ -70,12 +81,18 @@ cursor: pointer;
 
 `
 
-const imgUrl = "https://image.tmdb.org/t/p/w1280/";
+
 
 //const DEFAULT_IMG ="https://image.tmdb.org/t/p/w185/3L05HQS4GiR8PXCq0JjqXShoLRF.jpg"
 //No Image用の画像
 
 const Detail =(props) => {
+
+ 
+    
+    const imgUrl = "https://image.tmdb.org/t/p/w1280/";
+    const imgUrlPc = "https://image.tmdb.org/t/p/w500/";
+    const detailImgUrl = "https://image.tmdb.org/t/p/w1280/";
     //img→検索結果を表示
     //const poster =
      //props.img === "N/A" ? DEFAULT_IMG : props.img;
@@ -96,65 +113,64 @@ const Detail =(props) => {
     }
 
 
-    const favorites=props.favorites
+    // const favorites=props.favorites
 
 
-    const[isAdd, setIsAdd]=React.useState(false)
-    const handleIsFavorite =(e)=>{
-        e.preventDefault()
+    // const[isAdd, setIsAdd]=React.useState(false)
+    // const handleIsFavorite =(e)=>{
+    //     e.preventDefault()
 
 
-        if (isAdd) {
-            setIsAdd(false)
-            // props.movies(e.target.props.movies.value)
-            // If no favorites exist, clone the movie and copy into newFavorites.
-            const removeFavorites = props.favorites.slice();
+    //     if (isAdd) {
+    //         setIsAdd(false)
+    //         // props.movies(e.target.props.movies.value)
+    //         // If no favorites exist, clone the movie and copy into newFavorites.
+    //         const removeFavorites = favorites.slice();
             
-            //取り出した値の追加
-            //let deepClone = JSON.parse(JSON.stringify(props.movies));
-            removeFavorites.splice(props.id, 1)
+    //         //取り出した値の追加
+    //         //let deepClone = JSON.parse(JSON.stringify(props.movies));
+    //         removeFavorites.splice(props.id, 1)
   
-            //favoritesの再定義
-            props.setFavorites(removeFavorites)
+    //         //favoritesの再定義
+    //         props.setFavorites(removeFavorites)
   
-          //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
-        } else {
-            setIsAdd(true)
-            //➁追加の処理
-            // props.movies=e.target.props.movies.value
+    //       //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
+    //     } else {
+    //         setIsAdd(true)
+    //         //➁追加の処理
+    //         // props.movies=e.target.props.movies.value
                  
-            // If no favorites exist, clone the movie and copy into newFavorites.
-            let newFavorites = props.favorites.slice();
-            let moviesClone = JSON.parse(JSON.stringify(props.movies));
+    //         // If no favorites exist, clone the movie and copy into newFavorites.
+    //         let newFavorites = favorites.slice();
+    //         let moviesClone = JSON.parse(JSON.stringify(props.movies));
 
-            //取り出した値の追加
-            //let deepClone = JSON.parse(JSON.stringify(props.movies));
-            newFavorites.push(props.movies)
+    //         //取り出した値の追加
+    //         //let deepClone = JSON.parse(JSON.stringify(props.movies));
+    //         newFavorites.push(moviesClone)
 
-            //favoritesの再定義
-            props.setFavorites(newFavorites)
-            }
+    //         //favoritesの再定義
+    //         props.setFavorites(newFavorites)
+    //         }
 
-    } 
+    // } 
     
-    let isAddState
-        if (isAdd) {
-           isAddState="削除"
+    // let isAddState
+    //     if (isAdd) {
+    //        isAddState="削除"
     
-        } else {
-        　 isAddState="追加"
+    //     } else {
+    //     　 isAddState="追加"
      
-    }
+    // }
 
     const theme = useTheme();
     const isPC=useMediaQuery(theme.breakpoints.up('sm'));
 
     const poster =
-    props.movies[props.id].backdrop_path === "N/A" ? NO_IMG : detailImgUrl+props.movies[props.id].backdrop_path
+    props.movies[props.id].backdrop_path === "N/A" ? NO_IMG :  imgUrl+ props.movies[props.id].backdrop_path
 
-    // const isTAB=useMediaQuery({
-    //     query: "(max-width: 1024px)"
-    // })
+    const posterPc =
+    props.movies[props.id].poster_path === "N/A" ? NO_IMG :  imgUrlPc+ props.movies[props.id].poster_path
 
 
     let str=props.movies[props.id].release_date;
@@ -218,27 +234,38 @@ const Detail =(props) => {
     // const { urlKey } = props;
     // const url = `https://www.youtube.com/watch?v=${urlKey}`;
 
+    // let genresArray = props.details.map(item => item.name);
+    // let filter =genresArray.filter((genreItem) => {
+    //     return genresArray.includes(props.movie[props.id].genre_ids) 
+    // })
+
+
+    //   let genresArray = props.details.genres.map(item => item.name);
+    //   const genresArray= props.detailsfilter(genreRes => props.movies[props.id].genre_ids.includes(genreRes.id))
+
+
+
     
     return (
     <>
         {isPC ? (
         <Div style={{margin:'auto'}} className="movie"> 
             <Img 
-                src={poster}
+                src={posterPc}
             />
             <Div2>
                 <h1>{props.movies[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                {/* <h3>ジャンル{genreArray}</h3> */}
+                {/* <h3>ジャンル{genresArray}</h3> */}
                 <p>{props.movies[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{releaseDate}</p>
                 <h3>上映時間</h3>
                 {/* <p>{props.details.runtime}分</p> */}
 
-                <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
-                    {isAddState}
+                <StyledButton  onClick={(e)=>{props.handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+                    {props.isAddState}
                 </StyledButton> 
                 <Link onClick={(e)=>{handleId()}} to='/'>
                 <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
@@ -255,22 +282,22 @@ const Detail =(props) => {
            
         ) : ( //PC版
             <DivSP>
-                <Img 
-                    src={imgUrl+props.movies[props.id].backdrop_path}
+                <Img2 
+                    src={poster}
                 />
                 <Div3 className="childContainer">
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    {/* <h3>ジャンル{genreArray}</h3> */}
+                    {/* <h3>ジャンル{genresArray}</h3> */}
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{releaseDate}</p>
                     <h3>上映時間</h3>
                     {/* <p>{props.details.runtime}分</p> */}
 
-                    <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
-                        {isAddState}
+                    <StyledButton  onClick={(e)=>{props.handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+                        {props.isAddState}
                     </StyledButton> 
                     <Link onClick={(e)=>{handleId()}} to='/'>
                     <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>

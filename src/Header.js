@@ -94,6 +94,7 @@ background: linear-gradient(45deg, blue, brown);
   box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
   margin-left:10px;
   margin-top:-15px;
+  position: fixed!important;
 `;
 
 /*
