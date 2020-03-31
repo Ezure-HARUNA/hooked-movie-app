@@ -114,7 +114,7 @@ const Router =() =>{
                <Route exact path='/favoritelist' render={(props)=> <FavoriteList  favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route>
           </ul>
           <Route exact path='/favoritedetail' render={(props) => <FavoriteDetail movies={movies} setFavorites={setFavorites} favorites={favorites} id={id}></FavoriteDetail>}></Route>
-          <Route exact path="pagecontoroll" render={(props) => <PageContoroll pages={pages} setPages={setPages}></PageContoroll>}></Route>
+          <Route exact path="pagecontoroll" render={(props) => <PageContoroll setId={setId} pages={pages} setPages={setPages}></PageContoroll>}></Route>
           </BrowserRouter>
          
     </Div>

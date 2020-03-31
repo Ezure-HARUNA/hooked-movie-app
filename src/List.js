@@ -8,8 +8,10 @@ import StarRoundedIcon from '@material-ui/icons/StarRounded';
 const imgUrl = "https://image.tmdb.org/t/p/w154/";
 
 const Img =styled.img`
-width:100%;
-height:100%;
+width: 154px;
+/* width:100%; */
+/* height:100%; */
+height: 250px;
 border-radius:4px;
 `
 

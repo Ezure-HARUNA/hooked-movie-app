@@ -25,6 +25,7 @@ const PageContoroll =(props) => {
     return (
         <div style={{margin:'auto',width:'50%'}}> 
             <StyledPagination  count={10} color="primary" page={props.pages}  onChange={(e)=>{handleChange(e)}}/>
+          
         </div>
     )
 
