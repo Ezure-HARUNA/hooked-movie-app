@@ -26,9 +26,7 @@ const Router =() =>{
 
 //app
     const [loading, setLoading] = React.useState(true)
-    // const [movies, setMovies] = React.useState([])
     const [errorMessage, setErrorMessage] = React.useState(null)
-    //const [details, setDetails] =React.useState([])
 
      //APIの導入
   const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=${pages}`;
@@ -97,59 +95,6 @@ const Router =() =>{
          <FavoriteList setId={setId} id={id} favorite={favorite} favorites={favorites} setFavorites={setFavorites}/>
       )
    })
- 
-//!
-
-
-    // const[isAdd, setIsAdd]=React.useState(false)
-    // const handleIsFavorite =(e)=>{
-    //     e.preventDefault()
-
-
-    //     if (isAdd) {
-    //         setIsAdd(false)
-    //         // props.movies(e.target.props.movies.value)
-    //         // If no favorites exist, clone the movie and copy into newFavorites.
-    //         const removeFavorites = favorites.slice();
-            
-    //         //取り出した値の追加
-    //         //let deepClone = JSON.parse(JSON.stringify(props.movies));
-    //         removeFavorites.splice(id, 1)
-  
-    //         //favoritesの再定義
-    //         setFavorites(removeFavorites)
-  
-    //       //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
-    //     } else {
-    //         setIsAdd(true)
-    //         //➁追加の処理
-    //         // props.movies=e.target.props.movies.value
-                 
-    //         // If no favorites exist, clone the movie and copy into newFavorites.
-    //         let newFavorites = favorites.slice();
-    //         let moviesClone = JSON.parse(JSON.stringify(movies));
-
-    //         //取り出した値の追加
-    //         //let deepClone = JSON.parse(JSON.stringify(props.movies));
-    //         newFavorites.push(moviesClone)
-
-    //         //favoritesの再定義
-    //         setFavorites(newFavorites)
-    //         }
-
-    // } 
-    
-    // let isAddState
-    //     if (isAdd) {
-    //        isAddState="削除"
-    
-    //     } else {
-    //     　 isAddState="追加"
-     
-    // }
-    
-    // console.log(favorites)
-    // console.log(setFavorites)
 
    
 
@@ -160,7 +105,6 @@ const Router =() =>{
           {/* <App search={search} loading={loading} errorMessage={errorMessage} pages={pages} setPages={setPages} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}> */}
           <Route exact path='/app' render={(props) => <App search={search} loading={loading} errorMessage={errorMessage} pages={pages} setPages={setPages} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}></Route>
           <Route exact path='/detail' render={(props) => <Detail  newFavorites={newFavorites} movies={movies} details={details} id={id} setId={setId} favorites={favorites} setFavorites={setFavorites}></Detail>}></Route>
-          {/* onClick={(e)=>{handleIsFavorite(e)}} isAddState={isAddState} */}
           <ul>
           <Route exact path='/list' render={(props) => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
           </ul>
@@ -169,7 +113,7 @@ const Router =() =>{
           <ul>
                <Route exact path='/favoritelist' render={(props)=> <FavoriteList  favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route>
           </ul>
-          <Route exact path='/favoritedetail' render={(props) => <FavoriteDetail favorites={favorites} id={id}></FavoriteDetail>}></Route>
+          <Route exact path='/favoritedetail' render={(props) => <FavoriteDetail movies={movies} setFavorites={setFavorites} favorites={favorites} id={id}></FavoriteDetail>}></Route>
           <Route exact path="pagecontoroll" render={(props) => <PageContoroll pages={pages} setPages={setPages}></PageContoroll>}></Route>
           </BrowserRouter>
          

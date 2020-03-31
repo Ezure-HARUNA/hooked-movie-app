@@ -95,21 +95,21 @@ const FavoriteDetail =(props) => {
         props.setId(props.id)
     }
 
-    const[isAdd, setIsAdd]=React.useState(false)
+    const[isAdd, setIsAdd]=React.useState(true)
     const handleIsFavorite =(e)=>{
         e.preventDefault()
         if (isAdd) {
             setIsAdd(false)
             // props.movies(e.target.props.movies.value)
             // If no favorites exist, clone the movie and copy into newFavorites.
-            const removeFavorites = props.favorites.slice();
+            const removeFavoritesF = props.favorites.slice();
             
             //取り出した値の追加
             //let deepClone = JSON.parse(JSON.stringify(props.movies));
-            removeFavorites.splice(props.id, 1)
+            removeFavoritesF.splice(props.id, 1)
   
             //favoritesの再定義
-            props.setFavorites(removeFavorites)
+            props.setFavorites(removeFavoritesF)
   
           //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
         } else {
@@ -118,14 +118,15 @@ const FavoriteDetail =(props) => {
             // props.movies=e.target.props.movies.value
                  
             // If no favorites exist, clone the movie and copy into newFavorites.
-            let newFavorites = props.favorites.slice();
+            let newFavoritesF = props.favorites.slice();
+            let moviesCloneF = JSON.parse(JSON.stringify(props.movies[props.id]));
 
             //取り出した値の追加
             //let deepClone = JSON.parse(JSON.stringify(props.movies));
-            newFavorites.push(props.movies[props.id])
+            newFavoritesF.push(moviesCloneF)
 
             //favoritesの再定義
-            props.setFavorites(newFavorites)
+            props.setFavorites(newFavoritesF)
             }
 
     } 

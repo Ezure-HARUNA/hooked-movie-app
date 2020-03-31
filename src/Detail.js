@@ -1,4 +1,5 @@
 import React from "react"
+import GenreList from "./GenreList"
 import {Link} from 'react-router-dom'
 import styled from "styled-components"
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
@@ -170,11 +171,11 @@ const Detail =(props) => {
     const theme = useTheme();
     const isPC=useMediaQuery(theme.breakpoints.up('sm'));
 
-    const poster =
-    props.movies[props.id].backdrop_path === "N/A" ? NO_IMG :  imgUrl+ props.movies[props.id].backdrop_path
+    let poster =
+    props.movies[props.id].backdrop_path === null ? NO_IMG :  imgUrl+ props.movies[props.id].backdrop_path
 
-    const posterPc =
-    props.movies[props.id].poster_path === "N/A" ? NO_IMG :  imgUrlPc+ props.movies[props.id].poster_path
+    let posterPc =
+    props.movies[props.id].poster_path === null ? NO_IMG :  imgUrlPc+ props.movies[props.id].poster_path
 
 
     let str=props.movies[props.id].release_date;
@@ -238,10 +239,15 @@ const Detail =(props) => {
     // const { urlKey } = props;
     // const url = `https://www.youtube.com/watch?v=${urlKey}`;
 
-    // let genresArray = props.details.map(item => item.name);
-    // let filter =genresArray.filter((genreItem) => {
-    //     return genresArray.includes(props.movie[props.id].genre_ids) 
-    // })
+    // let genreArray=props.details.map(item => item.name);
+    let genreArray=props.details.map((name, id )=>{
+        return (
+            <GenreList id={id} name={name} details={props.details}></GenreList>
+        )
+
+    }) 
+
+    
 
 
     //   let genresArray = props.details.genres.map(item => item.name);
@@ -257,11 +263,12 @@ const Detail =(props) => {
             <Img 
                 src={posterPc}
             />
+         
             <Div2>
                 <h1>{props.movies[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                {/* <h3>ジャンル{genresArray}</h3> */}
+                {/* <h3>ジャンル{filter}</h3> */}
                 <p>{props.movies[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{releaseDate}</p>
@@ -286,14 +293,17 @@ const Detail =(props) => {
            
         ) : ( //PC版
             <DivSP>
-                <Img2 
+                 <Img2 
                     src={poster}
                 />
+              
                 <Div3 className="childContainer">
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    {/* <h3>ジャンル{genresArray}</h3> */}
+                    {/* <h3>ジャンル{filter}</h3> */}
+                    <GenreList movies={props.movies} id={props.id} genreArray={genreArray} ></GenreList>
+                    <p>{genreArray}</p>
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{releaseDate}</p>
