@@ -122,7 +122,7 @@ const FavoriteDetail =(props) => {
 
             //取り出した値の追加
             //let deepClone = JSON.parse(JSON.stringify(props.movies));
-            newFavorites.push(props.movies)
+            newFavorites.push(props.movies[props.id])
 
             //favoritesの再定義
             props.setFavorites(newFavorites)

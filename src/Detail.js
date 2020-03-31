@@ -113,55 +113,59 @@ const Detail =(props) => {
     }
 
 
-    // const favorites=props.favorites
+    const favorites=props.favorites
 
 
-    // const[isAdd, setIsAdd]=React.useState(false)
-    // const handleIsFavorite =(e)=>{
-    //     e.preventDefault()
+    const[isAdd, setIsAdd]=React.useState(false)
+    const handleIsFavorite =(e)=>{
+        e.preventDefault()
 
 
-    //     if (isAdd) {
-    //         setIsAdd(false)
-    //         // props.movies(e.target.props.movies.value)
-    //         // If no favorites exist, clone the movie and copy into newFavorites.
-    //         const removeFavorites = favorites.slice();
+        if (isAdd) {
+            setIsAdd(false)
+            // props.movies(e.target.props.movies.value)
+            // If no favorites exist, clone the movie and copy into newFavorites.
+            const removeFavorites = props.favorites.slice();
             
-    //         //取り出した値の追加
-    //         //let deepClone = JSON.parse(JSON.stringify(props.movies));
-    //         removeFavorites.splice(props.id, 1)
+            //取り出した値の追加
+            //let deepClone = JSON.parse(JSON.stringify(props.movies));
+            removeFavorites.splice(props.id, 1)
   
-    //         //favoritesの再定義
-    //         props.setFavorites(removeFavorites)
+            //favoritesの再定義
+            props.setFavorites(removeFavorites)
   
-    //       //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
-    //     } else {
-    //         setIsAdd(true)
-    //         //➁追加の処理
-    //         // props.movies=e.target.props.movies.value
+          //const newFavorites = favorites.filter(item => item.id !== props.movie.id);
+        } else {
+            setIsAdd(true)
+            //➁追加の処理
+            // props.movies=e.target.props.movies.value
                  
-    //         // If no favorites exist, clone the movie and copy into newFavorites.
-    //         let newFavorites = favorites.slice();
-    //         let moviesClone = JSON.parse(JSON.stringify(props.movies));
+            // If no favorites exist, clone the movie and copy into newFavorites.
+            let newFavorites = props.favorites.slice();
+            let moviesClone = JSON.parse(JSON.stringify(props.movies[props.id]));
 
-    //         //取り出した値の追加
-    //         //let deepClone = JSON.parse(JSON.stringify(props.movies));
-    //         newFavorites.push(moviesClone)
+            //取り出した値の追加
+            //let deepClone = JSON.parse(JSON.stringify(props.movies));
+            newFavorites.push(moviesClone)
 
-    //         //favoritesの再定義
-    //         props.setFavorites(newFavorites)
-    //         }
+            //favoritesの再定義
+            props.setFavorites(newFavorites)
+            }
 
-    // } 
+            console.log(props.favorites)
+            console.log(props.setFavorites)
+
+    } 
     
-    // let isAddState
-    //     if (isAdd) {
-    //        isAddState="削除"
+    let isAddState
+        if (isAdd) {
+           isAddState="削除"
     
-    //     } else {
-    //     　 isAddState="追加"
+        } else {
+        　 isAddState="追加"
      
-    // }
+    }
+    
 
     const theme = useTheme();
     const isPC=useMediaQuery(theme.breakpoints.up('sm'));
@@ -264,8 +268,8 @@ const Detail =(props) => {
                 <h3>上映時間</h3>
                 {/* <p>{props.details.runtime}分</p> */}
 
-                <StyledButton  onClick={(e)=>{props.handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
-                    {props.isAddState}
+                <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+                    {isAddState}
                 </StyledButton> 
                 <Link onClick={(e)=>{handleId()}} to='/'>
                 <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
@@ -296,8 +300,8 @@ const Detail =(props) => {
                     <h3>上映時間</h3>
                     {/* <p>{props.details.runtime}分</p> */}
 
-                    <StyledButton  onClick={(e)=>{props.handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
-                        {props.isAddState}
+                    <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+                        {isAddState}
                     </StyledButton> 
                     <Link onClick={(e)=>{handleId()}} to='/'>
                     <StyledButton2  variant="contained" color="primary" startIcon={<BackspaceRoundedIcon />}>
