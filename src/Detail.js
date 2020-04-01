@@ -266,8 +266,21 @@ const Detail =(props) => {
 
 
     //   let genresArray = props.details.genres.map(item => item.name);
-    //   const genresArray= props.detailsfilter(genreRes => props.movies[props.id].genre_ids.includes(genreRes.id))
+    
+        let genreArray=[];
+        if(props.movies[props.id].genre_ids.length === 0) {
+            return;
+        } else {
+            genreArray=props.details.filter((props.movie[props.id]) => props.details.includes(props.movies[props.id].genre_ids));
+            return;
+        }
 
+      
+        
+       
+
+
+     
 
 
     
@@ -283,7 +296,7 @@ const Detail =(props) => {
                 <h1>{props.movies[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                {/* <h3>ジャンル{filter}</h3> */}
+                <h3>ジャンル{genreArray}</h3>
                 <p>{props.movies[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{releaseDate}</p>
@@ -317,7 +330,7 @@ const Detail =(props) => {
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
                     <h2>Overview</h2>
-                    {/* <h3>ジャンル{filter}</h3> */}
+                    <h3>ジャンル{genreArray}</h3>
                     {/* <GenreList movies={props.movies} id={props.id} genreArray={genreArray} ></GenreList> */}
                     {/* <p>{genreArray}</p> */}
                     <p>{props.movies[props.id].overview}</p>
