@@ -41,9 +41,21 @@ function SimpleDialog(props) {
     onClose(selectedValue);
   };
 
+   // データベースのデータを反映する処理
   const handleListItemClick = value => {
     onClose(value);
+
+    //データベースからデータを持ってくる
+    fetch("/api/users")
+    .then(res=>res.json())
+    .then(res=>{
+    //持ってきたデータを反映させる(setUsers)
+    setUsers(res.data)
+  })
+
   };
+   
+    
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
@@ -60,14 +72,14 @@ function SimpleDialog(props) {
           </ListItem>
         ))}
 
-        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
+        {/* <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
           <ListItemAvatar>
             <Avatar>
               <AddIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary="Add account" />
-        </ListItem>
+        </ListItem> */}
       </List>
     </Dialog>
   );

@@ -118,7 +118,7 @@ const Detail =(props) => {
 
 
     const[isAdd, setIsAdd]=React.useState(false)
-    const handleIsFavorite =(e)=>{
+    const handleGetFavorite =(e)=>{
         e.preventDefault()
 
 
@@ -155,6 +155,21 @@ const Detail =(props) => {
 
             console.log(props.favorites)
             console.log(props.setFavorites)
+
+//!!        // サーバー空リクエストを受け取る
+            fetch("/api/users", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                favorites: e.target.props.favorites.value
+            })
+            }).then(res=>res.json())
+            .then(res=>{
+                console.log(res.msg)
+            }).catch(err=>console.error(err))
+
 
     } 
     
@@ -240,12 +255,12 @@ const Detail =(props) => {
     // const url = `https://www.youtube.com/watch?v=${urlKey}`;
 
     // let genreArray=props.details.map(item => item.name);
-    let genreArray=props.details.map((name, id )=>{
-        return (
-            <GenreList id={id} name={name} details={props.details}></GenreList>
-        )
+    // let genreArray=props.details.map((name, id )=>{
+    //     return (
+    //         <GenreList id={id} name={name} details={props.details}></GenreList>
+    //     )
 
-    }) 
+    // }) 
 
     
 
@@ -275,7 +290,7 @@ const Detail =(props) => {
                 <h3>上映時間</h3>
                 {/* <p>{props.details.runtime}分</p> */}
 
-                <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+                <StyledButton  onClick={(e)=>{handleGetFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
                     {isAddState}
                 </StyledButton> 
                 <Link onClick={(e)=>{handleId()}} to='/'>
@@ -287,6 +302,7 @@ const Detail =(props) => {
                     <PlayIcon />
                     Watch Trailer
                 </PlayButton> */}
+                
             </Div2>
         </Div>       
 　　　　
@@ -302,15 +318,15 @@ const Detail =(props) => {
                     {rating()}
                     <h2>Overview</h2>
                     {/* <h3>ジャンル{filter}</h3> */}
-                    <GenreList movies={props.movies} id={props.id} genreArray={genreArray} ></GenreList>
-                    <p>{genreArray}</p>
+                    {/* <GenreList movies={props.movies} id={props.id} genreArray={genreArray} ></GenreList> */}
+                    {/* <p>{genreArray}</p> */}
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{releaseDate}</p>
                     <h3>上映時間</h3>
                     {/* <p>{props.details.runtime}分</p> */}
 
-                    <StyledButton  onClick={(e)=>{handleIsFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
+                    <StyledButton  onClick={(e)=>{handleGetFavorite(e)}} variant="contained" color="primary" startIcon={<FavoriteRoundedIcon />}> 
                         {isAddState}
                     </StyledButton> 
                     <Link onClick={(e)=>{handleId()}} to='/'>
