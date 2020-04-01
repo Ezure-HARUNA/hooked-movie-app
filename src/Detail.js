@@ -265,15 +265,9 @@ const Detail =(props) => {
     
 
 
-    //   let genresArray = props.details.genres.map(item => item.name);
     
-        let genreArray=[];
-        if(props.movies[props.id].genre_ids.length === 0) {
-            return;
-        } else {
-            genreArray=props.details.filter((props.movie[props.id]) => props.details.includes(props.movies[props.id].genre_ids));
-            return;
-        }
+        const genreArray=props.details.filter(props.movie[props.id] => props.details.includes(props.movies[props.id].genre_ids));
+        
 
       
         
