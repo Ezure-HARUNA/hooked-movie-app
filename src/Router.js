@@ -67,7 +67,7 @@ const Router =() =>{
 
       // fetch(`https://api.themoviedb.org/3/search/person?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
      //fetch( `https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=1&include_adult=false`)
-     fetch(`https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US&query=${searchValue}&page=${pages}&include_adult=false`)
+     fetch(`https://api.themoviedb.org/3/search/movie?api_key=62df1d74f3375f28b7946846b540b1b9&language=ja-JA&query=${searchValue}&page=${pages}&include_adult=false`)
 
           
         .then(res => res.json())
@@ -104,19 +104,19 @@ const Router =() =>{
           <Header id={id} setId={setId}></Header>
           {/* <App search={search} loading={loading} errorMessage={errorMessage} pages={pages} setPages={setPages} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}> */}
           <Route exact path='/app' render={(props) => <App search={search} loading={loading} errorMessage={errorMessage} pages={pages} setPages={setPages} movies={movies} setMovies={setMovies} details={details} setDetails={setDetails} setId={setId}></App>}></Route>
-          <Route exact path='/detail' render={(props) => <Detail  newFavorites={newFavorites} movies={movies} details={details} id={id} setId={setId} favorites={favorites} setFavorites={setFavorites}></Detail>}></Route>
+          <Route path='/detail' render={(props) => <Detail  newFavorites={newFavorites} movies={movies} details={details} id={id} setId={setId} favorites={favorites} setFavorites={setFavorites}></Detail>}></Route>
           <ul>
-          <Route exact path='/list' render={(props) => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
+          <Route path='/list' render={(props) => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
           </ul>
-          <Route exact path='/upcoming' render={(props) => <UpComing  movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
+          <Route path='/upcoming' render={(props) => <UpComing  movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
           <Route exact path='/favorite' render={(props)=><Favorite favoritecards={favoritecards} favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
           <ul>
                <Route exact path='/favoritelist' render={(props)=> <FavoriteList  favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route>
           </ul>
           <Route exact path='/favoritedetail' render={(props) => <FavoriteDetail movies={movies} setFavorites={setFavorites} favorites={favorites} id={id}></FavoriteDetail>}></Route>
-          <Route exact path="pagecontoroll" render={(props) => <PageContoroll setId={setId} pages={pages} setPages={setPages}></PageContoroll>}></Route>
+          <Route path="pagecontoroll" render={(props) => <PageContoroll setId={setId} pages={pages} setPages={setPages}></PageContoroll>}></Route>
           <PageContoroll setId={setId} pages={pages} setPages={setPages}></PageContoroll>
-          </BrowserRouter>
+      </BrowserRouter>
          
     </Div>
     )

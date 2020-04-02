@@ -1,5 +1,4 @@
 import React from "react"
-import GenreList from "./GenreList"
 import {Link} from 'react-router-dom'
 import styled from "styled-components"
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
@@ -8,36 +7,41 @@ import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import BackspaceRoundedIcon from '@material-ui/icons/BackspaceRounded';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
-import NO_IMG from "./img/noImage.png"
+import NO_IMG from "./img/noImage.png";
+
+const imgUrl = "https://image.tmdb.org/t/p/w1280/";
+const imgUrlPc = "https://image.tmdb.org/t/p/w500/";
+const detailImgUrl = "https://image.tmdb.org/t/p/w1280/";
 
 
-const Img =styled.img`
-/* width: 470px!important; */
-/* height: 720px!important; */
-background: linear-gradient(
-      to left,
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0.05) 35%,
-      rgba(44, 57, 73, 0.8) 55%,
-      rgba(44, 57, 73, 1) 70%
-    )!important;
-`
+// const Img1 =styled.img`
+// /* width: 470px!important; */
+// /* height: 720px!important; */
+// background: linear-gradient(
+//       to left,
+//       rgba(0, 0, 0, 0),
+//       rgba(0, 0, 0, 0.05) 35%,
+//       rgba(44, 57, 73, 0.8) 55%,
+//       rgba(44, 57, 73, 1) 70%
+//     ), 
+//     url(${ imgUrl+props.movies[props.id].backdrop_path})!important;
+// `
 const Img2=styled.img`
     width: 100%;
     height: 100%;
 `
 
-const Div=styled.div`
-   /* position: relative; */
-   min-height:100vh;
-   /* width:100vw; */
-   background-color: #282A3A;
-   margin-top: 10px!important;
-   color: white;
-   overflow: hidden!important;
-   display: flex;
+// const Div=styled.div`
+//    /* position: relative; */
+//    min-height:100vh;
+//    /* width:100vw; */
+//    background-color: #282A3A;
+//    margin-top: 10px!important;
+//    color: white;
+//    overflow: hidden!important;
+//    display: flex;
    
-`
+// `
 const Div2=styled.div`
     padding: 0 3%!important;
     margin-top: 100px!important;
@@ -89,11 +93,30 @@ cursor: pointer;
 
 const Detail =(props) => {
 
+    const Div =styled.div`
+/* width: 470px!important; */
+/* height: 720px!important; */
+background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.05) 35%,
+      rgba(44, 57, 73, 0.8) 55%,
+      rgba(44, 57, 73, 1) 70%
+    ), 
+    url(${ imgUrl+props.movies[props.id].backdrop_path})!important;
+
+     /* position: relative; */
+   min-height:100vh;
+   /* width:100vw; */
+   background-color: #282A3A;
+   margin-top: 10px!important;
+   color: white;
+   overflow: hidden!important;
+   display: flex;
+   background-size: contain!important;
+`
+
  
-    
-    const imgUrl = "https://image.tmdb.org/t/p/w1280/";
-    const imgUrlPc = "https://image.tmdb.org/t/p/w500/";
-    const detailImgUrl = "https://image.tmdb.org/t/p/w1280/";
     //img→検索結果を表示
     //const poster =
      //props.img === "N/A" ? DEFAULT_IMG : props.img;
@@ -157,18 +180,18 @@ const Detail =(props) => {
             console.log(props.setFavorites)
 
 //!!        // サーバー空リクエストを受け取る
-            fetch("/api/users", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                favorites: e.target.props.favorites.value
-            })
-            }).then(res=>res.json())
-            .then(res=>{
-                console.log(res.msg)
-            }).catch(err=>console.error(err))
+            // fetch("/api/users", {
+            // method: "GET",
+            // headers: {
+            //     "Content-Type": "application/json"
+            // },
+            // body: JSON.stringify({
+            //     favorites: e.target.props.favorites.value
+            // })
+            // }).then(res=>res.json())
+            // .then(res=>{
+            //     console.log(res.msg)
+            // }).catch(err=>console.error(err))
 
 
     } 
@@ -190,7 +213,7 @@ const Detail =(props) => {
     props.movies[props.id].backdrop_path === null ? NO_IMG :  imgUrl+ props.movies[props.id].backdrop_path
 
     let posterPc =
-    props.movies[props.id].poster_path === null ? NO_IMG :  imgUrlPc+ props.movies[props.id].poster_path
+    props.movies[props.id].backdrop_path === null ? NO_IMG :  imgUrl+ props.movies[props.id].backdrop_path
 
 
     let str=props.movies[props.id].release_date;
@@ -265,8 +288,9 @@ const Detail =(props) => {
     
 
 
+    const genreArray = props.details.map(item => item.name);
     
-        const genreArray=props.details.filter(props.movie[props.id] => props.details.includes(props.movies[props.id].genre_ids));
+    let results=genreArray.filter(genreArray => genreArray.includes(props.movies[props.id].genre_ids));
         
 
       
@@ -282,15 +306,15 @@ const Detail =(props) => {
     <>
         {isPC ? (
         <Div style={{margin:'auto'}} className="movie"> 
-            <Img 
-                src={posterPc}
-            />
+            {/* <Img1 
+                // src={posterPc}
+            /> */}
          
             <Div2>
                 <h1>{props.movies[props.id].title}</h1> 
                 {rating()}
                 <h2>Overview</h2>
-                <h3>ジャンル{genreArray}</h3>
+                <h3>ジャンル{results.join(", ")}</h3>
                 <p>{props.movies[props.id].overview}</p>
                 <h3>Release Date</h3>
                 <p>{releaseDate}</p>
@@ -323,10 +347,11 @@ const Detail =(props) => {
                 <Div3 className="childContainer">
                     <h1>{props.movies[props.id].title}</h1> 
                     {rating()}
-                    <h2>Overview</h2>
-                    <h3>ジャンル{genreArray}</h3>
+                    
+                    <h3>ジャンル{results.join(", ")}</h3>
                     {/* <GenreList movies={props.movies} id={props.id} genreArray={genreArray} ></GenreList> */}
                     {/* <p>{genreArray}</p> */}
+                    <h2>Overview</h2>
                     <p>{props.movies[props.id].overview}</p>
                     <h3>Release Date</h3>
                     <p>{releaseDate}</p>

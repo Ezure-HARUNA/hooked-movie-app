@@ -45,13 +45,13 @@ function SimpleDialog(props) {
   const handleListItemClick = value => {
     onClose(value);
 
-    //データベースからデータを持ってくる
-    fetch("/api/users")
-    .then(res=>res.json())
-    .then(res=>{
-    //持ってきたデータを反映させる(setUsers)
-    setUsers(res.data)
-  })
+  //   //データベースからデータを持ってくる
+  //   fetch("/api/users")
+  //   .then(res=>res.json())
+  //   .then(res=>{
+  //   //持ってきたデータを反映させる(setUsers)
+  //   setUsers(res.data)
+  // })
 
   };
    

@@ -5,7 +5,7 @@ React Hooksを用いた映画アプリ
 2. デモ
 ![イメージ画像](./src/img/demo.png)
 
-リンクは[こちら](https://ezure-haruna.github.io/Movie-App/)
+デモは[こちら](https://ezure-haruna.github.io/Movie-App/)
 
 3. プロジェクトの概要説明
 - メニューバーから人気映画・上映中の映画を見ることができます。
