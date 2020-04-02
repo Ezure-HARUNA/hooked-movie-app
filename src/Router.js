@@ -38,12 +38,12 @@ const Router =() =>{
           .then(res => { //responseでも可能(任意) json→連想配列
               setMovies(res.results)
               // setDetails(res.genres)
-              // setPages(res.page)
+              setPages(res.page)
               setLoading(false)
 
           });
 
-      fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=en-US") 
+      fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=62df1d74f3375f28b7946846b540b1b9&language=ja-JA") 
           .then(res => res.json())
           .then(res => {
             setDetails(res.genres)
@@ -115,7 +115,7 @@ const Router =() =>{
           </ul>
           <Route exact path='/favoritedetail' render={(props) => <FavoriteDetail movies={movies} setFavorites={setFavorites} favorites={favorites} id={id}></FavoriteDetail>}></Route>
           <Route path="pagecontoroll" render={(props) => <PageContoroll setId={setId} pages={pages} setPages={setPages}></PageContoroll>}></Route>
-          <PageContoroll setId={setId} pages={pages} setPages={setPages}></PageContoroll>
+          {/* <PageContoroll setId={setId} pages={pages} setPages={setPages}></PageContoroll> */}
       </BrowserRouter>
          
     </Div>

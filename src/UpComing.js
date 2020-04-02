@@ -152,7 +152,7 @@ const UpComing =(props) => {
           </Ul>
         )} 
       </div>
-        {/* <PageContoroll></PageContoroll>  */}
+      <PageContoroll pages={props.pages} setPage={props.setPage}></PageContoroll>
     </Div>
     
   )
