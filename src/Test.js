@@ -83,7 +83,7 @@ export default function Test(props) {
     >
      
      <List>
-          <StyledLink className="link" onClick={(e)=>{handleId()}} to='/app'>
+          <StyledLink className="link" onClick={(e)=>{handleId()}} to='/'>
           <ListItem>
           <ListItemIcon>< TheatersRoundedIcon /></ListItemIcon>
           <ListItemText primary="人気映画"/>

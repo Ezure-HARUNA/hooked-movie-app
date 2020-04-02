@@ -289,9 +289,9 @@ background: linear-gradient(
 
 
     const genreArray = props.details.map(item => item.name);
-    const genreArrayId = props.details.map(item => item.id);
+    // const genreArrayId = props.details.map(item => item.id);
     
-    let results=genreArrayId.filter(genreArray => genreArrayId.includes(props.movies[props.id].genre_ids));
+    let results=genreArray.filter(genreArray => genreArray.includes(props.movies[props.id].genre_ids));
         
 
       
