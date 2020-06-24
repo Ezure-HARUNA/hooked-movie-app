@@ -17,8 +17,8 @@ React Hooksを用いた映画アプリ
 - React/React Hooks
 - HTML/CSS
 - material-UI
-- デプロイ
 - APIによるデータ取得
+- Yarn
 
 5. 使い方
 ```markdown:clone

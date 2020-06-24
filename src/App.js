@@ -1,7 +1,7 @@
 //➀インポート
 import React from "react"
 import Search from "./Search"
-import List from "./List"
+import List from "./List";
 import PageContoroll from "./PageContoroll";
 import CircularProgress from '@material-ui/core/CircularProgress';
 

@@ -109,7 +109,7 @@ const Router =() =>{
           <Route path='/list' render={(props) => <List favorites={favorites} setFavorites={setFavorites} details={details} movies={movies} id={id} setid={setId}></List>}></Route>
           </ul>
           <Route path='/upcoming' render={(props) => <UpComing  movies={movies} setMovies={setMovies} setId={setId}></UpComing>}></Route>
-          <Route exact path='/favorite' render={(props)=><Favorite favoritecards={favoritecards} favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
+          <Route path='/favorite' render={(props)=><Favorite favoritecards={favoritecards} favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></Favorite>}></Route>
           <ul>
                <Route exact path='/favoritelist' render={(props)=> <FavoriteList  favorites={favorites} setFavorites={setFavorites} movies={movies} id={id} ></FavoriteList>}></Route>
           </ul>

@@ -11,6 +11,8 @@ import NO_IMG from "./img/noImage.png"
 
 
 
+const imgUrl = "https://image.tmdb.org/t/p/w1280/";
+const imgUrlPc = "https://image.tmdb.org/t/p/w500/";
 const detailImgUrl = "https://image.tmdb.org/t/p/w1280/";
 
 const Img =styled.img`
@@ -18,15 +20,15 @@ width:100%;
 height:100%;
 `
 
-const Div=styled.div`
-   /* position: relative; */
-   min-height:100vh;
-   /* width:100vw; */
-   background-color: #282A3A;
-   margin-top: 10px!important;
-   color: white;
-   overflow: hidden!important;
-`
+// const Div=styled.div`
+//    /* position: relative; */
+//    min-height:100vh;
+//    /* width:100vw; */
+//    background-color: #282A3A;
+//    margin-top: 10px!important;
+//    color: white;
+//    overflow: hidden!important;
+// `
 const Div2=styled.div`
     padding: 0 3%!important;
 `
@@ -76,6 +78,31 @@ const imgUrlF = "https://image.tmdb.org/t/p/w1280/";
 //No Image用の画像
 
 const FavoriteDetail =(props) => {
+
+    const Div =styled.div`
+/* width: 470px!important; */
+/* height: 720px!important; */
+background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.05) 35%,
+      rgba(44, 57, 73, 0.8) 55%,
+      rgba(44, 57, 73, 1) 70%
+    ), 
+    url(${ imgUrl+props.movies[props.id].backdrop_path})!important;
+
+     /* position: relative; */
+   min-height:100vh;
+   /* width:100vw; */
+   background-color: #282A3A;
+   margin-top: 10px!important;
+   color: white;
+   overflow: hidden!important;
+   display: flex;
+   background-size: contain!important;
+`
+
+
     //img→検索結果を表示
     //const poster =
      //props.img === "N/A" ? DEFAULT_IMG : props.img;
@@ -167,9 +194,9 @@ const FavoriteDetail =(props) => {
     <>
         {isPC ? (
         <Div style={{margin:'auto'}} className="movie"> 
-            <Img 
+            {/* <Img 
                 src={poster}
-            />
+            /> */}
             <Div2>
                 <h1>{props.favorites[props.id].title}</h1> 
                 {rating()}
