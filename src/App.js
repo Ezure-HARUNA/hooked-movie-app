@@ -6,7 +6,7 @@ import PageContoroll from "./PageContoroll";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
   //styled-componentsをインポート
-  import styled from "styled-components"
+  import styled from "styled-components";
 
 　//APIの導入
 // const MOVIE_POPULAR_URL = `https://api.themoviedb.org/3/movie/popular?api_key=62df1d74f3375f28b7946846b540b1b9&amp;language=ja-JA&amp;page=${props.pages}`;
