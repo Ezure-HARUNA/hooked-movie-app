@@ -1,3 +1,5 @@
+// インポートするコンポーネント、styled-components、material-ui,その他をインポート
+
 import React, {useEffect} from "react"
 import {BrowserRouter , Route} from "react-router-dom";
 import App from "./App"
